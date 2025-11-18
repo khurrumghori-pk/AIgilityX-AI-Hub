@@ -28,7 +28,7 @@ const Onboarding = () => {
         {/* Header */}
         <div className="mb-12 space-y-4 text-center">
           <Badge className="bg-primary/10 text-primary border-primary/20">
-            Solution Provider Onboarding
+            Partner Onboarding
           </Badge>
           <h1 className="text-4xl sm:text-5xl font-bold">List Your AI Solution</h1>
           <p className="text-xl text-muted-foreground">
@@ -77,8 +77,8 @@ const Onboarding = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="vendor-name">Vendor/Company Name *</Label>
-                <Input id="vendor-name" placeholder="Your company name" />
+                <Label htmlFor="partner-name">Partner/Company Name *</Label>
+                <Input id="partner-name" placeholder="Your company name" />
               </div>
 
               <div className="grid md:grid-cols-2 gap-4">

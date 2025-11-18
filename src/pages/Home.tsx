@@ -62,15 +62,14 @@ const Home = () => {
         <div className="container mx-auto relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-8 animate-slide-up">
             <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">
-              Telco-First AI Infrastructure Platform
+              Enterprise AI Solutions Marketplace
             </Badge>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
-              Transform Telcos into
-              <span className="bg-gradient-primary bg-clip-text text-transparent"> AI Innovation Partners</span>
+              AIgilityX AI Hub
+              <span className="bg-gradient-primary bg-clip-text text-transparent block mt-2">Your Gateway to Global AI Innovation</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              AIgilityX AI Hub empowers telecommunications operators to deliver AI Infrastructure as a Service,
-              creating new revenue streams and driving digital transformation at scale.
+              Discover and deploy vetted AI solutions from trusted partners across GCC & MENA, South Asia, Europe, and North America. Accelerate your digital transformation with enterprise-ready AI.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/marketplace">
@@ -81,7 +80,7 @@ const Home = () => {
               </Link>
               <Link to="/onboarding">
                 <Button size="lg" variant="outline" className="text-lg px-8">
-                  Become a Vendor
+                  Become a Partner
                 </Button>
               </Link>
             </div>
