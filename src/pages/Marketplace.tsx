@@ -11,14 +11,18 @@ const Marketplace = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedIndustry, setSelectedIndustry] = useState("all");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedRegion, setSelectedRegion] = useState("all");
+  const [selectedCountry, setSelectedCountry] = useState("all");
 
   const solutions = [
     {
       id: 1,
       name: "AI-Powered Customer Analytics",
-      vendor: "TelcoAI Solutions",
+      partner: "TelcoAI Solutions",
       category: "Analytics",
       industry: "Telecommunications",
+      region: "GCC & MENA",
+      country: "UAE",
       description: "Advanced customer behavior analytics using machine learning to predict churn and optimize engagement.",
       rating: 4.8,
       reviews: 127,
@@ -29,9 +33,11 @@ const Marketplace = () => {
     {
       id: 2,
       name: "Network Optimization AI",
-      vendor: "SmartGrid AI",
+      partner: "SmartGrid AI",
       category: "Infrastructure",
       industry: "Telecommunications",
+      region: "GCC & MENA",
+      country: "Saudi Arabia",
       description: "Intelligent network traffic management and optimization powered by deep learning algorithms.",
       rating: 4.9,
       reviews: 89,
@@ -42,9 +48,11 @@ const Marketplace = () => {
     {
       id: 3,
       name: "Arabic NLP Suite",
-      vendor: "LanguageAI",
+      partner: "LanguageAI",
       category: "NLP",
       industry: "Government",
+      region: "GCC & MENA",
+      country: "Qatar",
       description: "Comprehensive natural language processing tools optimized for Arabic language and dialects.",
       rating: 4.7,
       reviews: 203,
@@ -55,9 +63,11 @@ const Marketplace = () => {
     {
       id: 4,
       name: "Fraud Detection Engine",
-      vendor: "SecureAI Labs",
+      partner: "SecureAI Labs",
       category: "Security",
       industry: "Finance",
+      region: "North America",
+      country: "USA",
       description: "Real-time fraud detection using anomaly detection and pattern recognition algorithms.",
       rating: 4.9,
       reviews: 156,
@@ -68,9 +78,11 @@ const Marketplace = () => {
     {
       id: 5,
       name: "Smart City IoT Platform",
-      vendor: "UrbanTech AI",
+      partner: "UrbanTech AI",
       category: "IoT",
       industry: "Government",
+      region: "South Asia",
+      country: "India",
       description: "Integrated IoT and AI platform for smart city management and optimization.",
       rating: 4.6,
       reviews: 94,
@@ -81,9 +93,11 @@ const Marketplace = () => {
     {
       id: 6,
       name: "Predictive Maintenance AI",
-      vendor: "IndustrialAI",
+      partner: "IndustrialAI",
       category: "Operations",
       industry: "Manufacturing",
+      region: "Europe",
+      country: "Germany",
       description: "Predict equipment failures and optimize maintenance schedules using machine learning.",
       rating: 4.8,
       reviews: 178,
@@ -95,10 +109,13 @@ const Marketplace = () => {
 
   const filteredSolutions = solutions.filter(solution => {
     const matchesSearch = solution.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         solution.description.toLowerCase().includes(searchQuery.toLowerCase());
+                         solution.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         solution.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
     const matchesIndustry = selectedIndustry === "all" || solution.industry === selectedIndustry;
     const matchesCategory = selectedCategory === "all" || solution.category === selectedCategory;
-    return matchesSearch && matchesIndustry && matchesCategory;
+    const matchesRegion = selectedRegion === "all" || solution.region === selectedRegion;
+    const matchesCountry = selectedCountry === "all" || solution.country === selectedCountry;
+    return matchesSearch && matchesIndustry && matchesCategory && matchesRegion && matchesCountry;
   });
 
   return (
@@ -114,11 +131,11 @@ const Marketplace = () => {
 
         {/* Filters */}
         <Card className="p-6 mb-8">
-          <div className="grid md:grid-cols-4 gap-4">
-            <div className="md:col-span-2 relative">
+          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="md:col-span-3 lg:col-span-2 relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
               <Input
-                placeholder="Search solutions..."
+                placeholder="Search solutions, tags..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10"
@@ -150,6 +167,34 @@ const Marketplace = () => {
                 <SelectItem value="Operations">Operations</SelectItem>
               </SelectContent>
             </Select>
+            <Select value={selectedRegion} onValueChange={setSelectedRegion}>
+              <SelectTrigger>
+                <SelectValue placeholder="Region" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Regions</SelectItem>
+                <SelectItem value="GCC & MENA">GCC & MENA</SelectItem>
+                <SelectItem value="South Asia">South Asia</SelectItem>
+                <SelectItem value="Europe">Europe</SelectItem>
+                <SelectItem value="North America">North America</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select value={selectedCountry} onValueChange={setSelectedCountry}>
+              <SelectTrigger>
+                <SelectValue placeholder="Country" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Countries</SelectItem>
+                <SelectItem value="UAE">UAE</SelectItem>
+                <SelectItem value="Saudi Arabia">Saudi Arabia</SelectItem>
+                <SelectItem value="Qatar">Qatar</SelectItem>
+                <SelectItem value="India">India</SelectItem>
+                <SelectItem value="Pakistan">Pakistan</SelectItem>
+                <SelectItem value="Germany">Germany</SelectItem>
+                <SelectItem value="UK">UK</SelectItem>
+                <SelectItem value="USA">USA</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </Card>
 
@@ -178,7 +223,8 @@ const Marketplace = () => {
               </div>
 
               <h3 className="text-xl font-semibold mb-2">{solution.name}</h3>
-              <p className="text-sm text-muted-foreground mb-1">{solution.vendor}</p>
+              <p className="text-sm text-muted-foreground mb-1">{solution.partner}</p>
+              <p className="text-xs text-muted-foreground mb-2">{solution.region} • {solution.country}</p>
               
               <div className="flex items-center gap-2 mb-4">
                 <div className="flex items-center">
@@ -228,6 +274,8 @@ const Marketplace = () => {
               setSearchQuery("");
               setSelectedIndustry("all");
               setSelectedCategory("all");
+              setSelectedRegion("all");
+              setSelectedCountry("all");
             }}>
               Clear Filters
             </Button>
