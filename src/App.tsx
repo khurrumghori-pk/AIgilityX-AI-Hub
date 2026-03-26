@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar, { LanguageContext } from "./components/Navbar";
+import Navbar, { LanguageProvider } from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Marketplace from "./pages/Marketplace";
@@ -12,18 +12,17 @@ import Intelligence from "./pages/Intelligence";
 import Onboarding from "./pages/Onboarding";
 import PartnerDashboard from "./pages/PartnerDashboard";
 import About from "./pages/About";
+import Governance from "./pages/Governance";
+import Pilots from "./pages/Pilots";
+import CountryLanding from "./pages/CountryLanding";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-type Language = 'en' | 'ar' | 'ur';
-
 const App = () => {
-  const [language, setLanguage] = useState<Language>('en');
-
   return (
     <QueryClientProvider client={queryClient}>
-      <LanguageContext.Provider value={{ language, setLanguage }}>
+      <LanguageProvider>
         <TooltipProvider>
           <Toaster />
           <Sonner />
@@ -38,6 +37,9 @@ const App = () => {
                   <Route path="/onboarding" element={<Onboarding />} />
                   <Route path="/partner-dashboard" element={<PartnerDashboard />} />
                   <Route path="/about" element={<About />} />
+                  <Route path="/governance" element={<Governance />} />
+                  <Route path="/pilots" element={<Pilots />} />
+                  <Route path="/country/:country" element={<CountryLanding />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </main>
@@ -45,7 +47,7 @@ const App = () => {
             </div>
           </BrowserRouter>
         </TooltipProvider>
-      </LanguageContext.Provider>
+      </LanguageProvider>
     </QueryClientProvider>
   );
 };
