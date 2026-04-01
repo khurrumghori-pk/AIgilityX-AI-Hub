@@ -7,8 +7,9 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Menu, X, Globe, ChevronDown } from "lucide-react";
+import { Menu, X, Globe, ChevronDown, Users, BarChart3 } from "lucide-react";
 
 type Language = "en" | "ar" | "ur";
 type Direction = "ltr" | "rtl";
@@ -33,10 +34,11 @@ const translations: Record<Language, Record<string, string>> = {
     marketplace: "Marketplace",
     intelligence: "Intelligence",
     about: "About",
-    dashboard: "Dashboard",
+    dashboard: "Partner Dashboard",
     governance: "Governance",
     pilots: "Pilots",
     partners: "Partners",
+    foundingPartners: "Founding Partners",
     howItWorks: "How It Works",
     contact: "Contact",
     joinEcosystem: "Become a Partner",
@@ -47,10 +49,11 @@ const translations: Record<Language, Record<string, string>> = {
     marketplace: "السوق",
     intelligence: "الذكاء",
     about: "عن المنصة",
-    dashboard: "لوحة التحكم",
+    dashboard: "لوحة تحكم الشريك",
     governance: "الحوكمة",
     pilots: "المشاريع التجريبية",
     partners: "الشركاء",
+    foundingPartners: "الشركاء المؤسسون",
     howItWorks: "كيف يعمل",
     contact: "اتصل بنا",
     joinEcosystem: "انضم كشريك",
@@ -61,10 +64,11 @@ const translations: Record<Language, Record<string, string>> = {
     marketplace: "مارکیٹ",
     intelligence: "انٹیلیجنس",
     about: "ہمارے بارے میں",
-    dashboard: "ڈیش بورڈ",
+    dashboard: "پارٹنر ڈیش بورڈ",
     governance: "گورننس",
     pilots: "پائلٹ پروگرام",
     partners: "پارٹنرز",
+    foundingPartners: "بانی پارٹنرز",
     howItWorks: "کیسے کام کرتا ہے",
     contact: "رابطہ کریں",
     joinEcosystem: "پارٹنر بنیں",
@@ -103,7 +107,6 @@ const Navbar = () => {
     { path: "/governance", label: t("governance") },
     { path: "/pilots", label: t("pilots") },
     { path: "/intelligence", label: t("intelligence") },
-    { path: "/partners", label: t("partners") },
     { path: "/how-it-works", label: t("howItWorks") },
     { path: "/about", label: t("about") },
     { path: "/contact", label: t("contact") },
@@ -145,6 +148,43 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
+
+            {/* Partners Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    isActive("/partners") || isActive("/partner-dashboard")
+                      ? "bg-primary/10 text-primary"
+                      : "text-[hsl(220_12%_70%)] hover:text-[hsl(220_15%_95%)] hover:bg-[hsl(220_20%_15%)]"
+                  }`}
+                >
+                  {t("partners")}
+                  <ChevronDown size={14} />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="bg-[hsl(220_22%_12%)] border-[hsl(220_18%_20%)] w-52">
+                <DropdownMenuItem asChild>
+                  <Link
+                    to="/partners"
+                    className="flex items-center gap-2 cursor-pointer text-[hsl(220_12%_70%)] hover:text-[hsl(220_15%_95%)] hover:bg-[hsl(220_20%_15%)]"
+                  >
+                    <Users size={16} />
+                    {t("foundingPartners")}
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator className="bg-[hsl(220_18%_20%)]" />
+                <DropdownMenuItem asChild>
+                  <Link
+                    to="/partner-dashboard"
+                    className="flex items-center gap-2 cursor-pointer text-[hsl(220_12%_70%)] hover:text-[hsl(220_15%_95%)] hover:bg-[hsl(220_20%_15%)]"
+                  >
+                    <BarChart3 size={16} />
+                    {t("dashboard")}
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
           {/* Right Side */}
@@ -216,6 +256,29 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
+              <Link
+                to="/partners"
+                onClick={() => setIsOpen(false)}
+                className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                  isActive("/partners")
+                    ? "bg-primary/10 text-primary"
+                    : "text-[hsl(220_12%_70%)] hover:text-[hsl(220_15%_95%)] hover:bg-[hsl(220_20%_15%)]"
+                }`}
+              >
+                {t("foundingPartners")}
+              </Link>
+              <Link
+                to="/partner-dashboard"
+                onClick={() => setIsOpen(false)}
+                className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 ${
+                  isActive("/partner-dashboard")
+                    ? "bg-primary/10 text-primary"
+                    : "text-[hsl(220_12%_70%)] hover:text-[hsl(220_15%_95%)] hover:bg-[hsl(220_20%_15%)]"
+                }`}
+              >
+                <BarChart3 size={16} />
+                {t("dashboard")}
+              </Link>
               <div className="pt-4 border-t border-[hsl(220_18%_20%)] mt-2">
                 <Link to="/onboarding" onClick={() => setIsOpen(false)}>
                   <Button className="w-full bg-gradient-primary hover:opacity-90">

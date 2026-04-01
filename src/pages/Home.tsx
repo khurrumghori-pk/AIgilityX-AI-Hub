@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
+import { ScrollSection } from "@/hooks/useScrollAnimation";
 import { 
   Network, 
   Zap, 
@@ -211,14 +212,16 @@ const Home = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center space-y-2">
-                <div className="text-5xl font-display font-bold gradient-text">
-                  {stat.value}
+              <ScrollSection key={index} animation="fade-up" delay={index * 100}>
+                <div className="text-center space-y-2">
+                  <div className="text-5xl font-display font-bold gradient-text">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-muted-foreground font-medium uppercase tracking-wider">
+                    {stat.label}
+                  </div>
                 </div>
-                <div className="text-sm text-muted-foreground font-medium uppercase tracking-wider">
-                  {stat.label}
-                </div>
-              </div>
+              </ScrollSection>
             ))}
           </div>
         </div>
@@ -228,30 +231,34 @@ const Home = () => {
       <section className="section-dark py-24 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="card-themed p-8 border-destructive/20 hover-lift">
-              <div className="w-14 h-14 bg-destructive/10 rounded-xl flex items-center justify-center mb-5">
-                <Layers className="text-destructive" size={28} />
-              </div>
-              <h3 className="text-2xl font-display font-bold mb-3 text-[hsl(220_15%_95%)]">
-                Fragmented AI Ecosystem
-              </h3>
-              <p className="text-[hsl(220_12%_60%)] leading-relaxed">
-                Compute, models, and solutions are scattered across vendors. Organizations lack 
-                a unified approach to deploy and govern AI at national or enterprise scale.
-              </p>
-            </Card>
-            <Card className="card-themed p-8 border-primary/20 hover-lift">
-              <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-5">
-                <Network className="text-primary" size={28} />
-              </div>
-              <h3 className="text-2xl font-display font-bold mb-3 text-[hsl(220_15%_95%)]">
-                Sovereign AI Exchange
-              </h3>
-              <p className="text-[hsl(220_12%_60%)] leading-relaxed">
-                A governed, multi-partner hub connecting infrastructure, intelligence, and users 
-                at national scale — with built-in compliance, trust, and sovereignty.
-              </p>
-            </Card>
+            <ScrollSection animation="fade-left">
+              <Card className="card-themed p-8 border-destructive/20 hover-lift">
+                <div className="w-14 h-14 bg-destructive/10 rounded-xl flex items-center justify-center mb-5">
+                  <Layers className="text-destructive" size={28} />
+                </div>
+                <h3 className="text-2xl font-display font-bold mb-3 text-[hsl(220_15%_95%)]">
+                  Fragmented AI Ecosystem
+                </h3>
+                <p className="text-[hsl(220_12%_60%)] leading-relaxed">
+                  Compute, models, and solutions are scattered across vendors. Organizations lack 
+                  a unified approach to deploy and govern AI at national or enterprise scale.
+                </p>
+              </Card>
+            </ScrollSection>
+            <ScrollSection animation="fade-right">
+              <Card className="card-themed p-8 border-primary/20 hover-lift">
+                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-5">
+                  <Network className="text-primary" size={28} />
+                </div>
+                <h3 className="text-2xl font-display font-bold mb-3 text-[hsl(220_15%_95%)]">
+                  Sovereign AI Exchange
+                </h3>
+                <p className="text-[hsl(220_12%_60%)] leading-relaxed">
+                  A governed, multi-partner hub connecting infrastructure, intelligence, and users 
+                  at national scale — with built-in compliance, trust, and sovereignty.
+                </p>
+              </Card>
+            </ScrollSection>
           </div>
         </div>
       </section>
@@ -259,27 +266,31 @@ const Home = () => {
       {/* How It Works - 4 Layers - Light */}
       <section className="section-light py-24 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <Badge className="bg-accent/10 text-accent border-accent/20">How It Works</Badge>
-            <h2 className="text-4xl sm:text-5xl font-display font-bold">
-              Four <span className="gradient-text">Layers</span> of Intelligence
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              A multi-layered architecture connecting compute, solutions, agents, and governance.
-            </p>
-          </div>
+          <ScrollSection animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+              <Badge className="bg-accent/10 text-accent border-accent/20">How It Works</Badge>
+              <h2 className="text-4xl sm:text-5xl font-display font-bold">
+                Four <span className="gradient-text">Layers</span> of Intelligence
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                A multi-layered architecture connecting compute, solutions, agents, and governance.
+              </p>
+            </div>
+          </ScrollSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {howItWorksLayers.map((layer, index) => {
               const Icon = layer.icon;
               return (
-                <Card key={index} className="p-8 text-center hover-lift shadow-soft group">
-                  <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:shadow-glow transition-all">
-                    <Icon className="text-primary-foreground" size={32} />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">{layer.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{layer.description}</p>
-                </Card>
+                <ScrollSection key={index} animation="fade-up" delay={index * 150}>
+                  <Card className="p-8 text-center hover-lift shadow-soft group h-full">
+                    <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:shadow-glow transition-all">
+                      <Icon className="text-primary-foreground" size={32} />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3">{layer.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{layer.description}</p>
+                  </Card>
+                </ScrollSection>
               );
             })}
           </div>
@@ -289,12 +300,14 @@ const Home = () => {
       {/* Audience Sections - Dark */}
       <section className="section-dark py-24 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <Badge className="badge-glow">Ecosystem</Badge>
-            <h2 className="text-4xl sm:text-5xl font-display font-bold">
-              Built for <span className="gradient-text">Every Stakeholder</span>
-            </h2>
-          </div>
+          <ScrollSection animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+              <Badge className="badge-glow">Ecosystem</Badge>
+              <h2 className="text-4xl sm:text-5xl font-display font-bold">
+                Built for <span className="gradient-text">Every Stakeholder</span>
+              </h2>
+            </div>
+          </ScrollSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Telcos */}
@@ -433,34 +446,38 @@ const Home = () => {
       {/* Marketplace Preview - Light */}
       <section className="section-light py-24 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <Badge className="bg-accent/10 text-accent border-accent/20">Featured Solutions</Badge>
-            <h2 className="text-4xl sm:text-5xl font-display font-bold">
-              Featured AI <span className="gradient-text">Solutions</span>
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Curated, validated solutions from the sovereign AI marketplace.
-            </p>
-          </div>
+          <ScrollSection animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+              <Badge className="bg-accent/10 text-accent border-accent/20">Featured Solutions</Badge>
+              <h2 className="text-4xl sm:text-5xl font-display font-bold">
+                Featured AI <span className="gradient-text">Solutions</span>
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Curated, validated solutions from the sovereign AI marketplace.
+              </p>
+            </div>
+          </ScrollSection>
 
           <div className="grid md:grid-cols-3 gap-6">
             {featuredSolutions.map((solution, index) => (
-              <Card key={index} className="p-6 hover-lift shadow-soft">
-                <Badge variant="secondary" className="mb-4">{solution.category}</Badge>
-                <h3 className="text-xl font-semibold mb-2">{solution.title}</h3>
-                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{solution.description}</p>
-                <div className="flex items-center justify-between pt-4 border-t border-border">
-                  <div className="flex items-center gap-1">
-                    <Star className="text-amber-500 fill-amber-500" size={16} />
-                    <span className="text-sm font-medium">{solution.rating}</span>
+              <ScrollSection key={index} animation="fade-up" delay={index * 120}>
+                <Card className="p-6 hover-lift shadow-soft h-full">
+                  <Badge variant="secondary" className="mb-4">{solution.category}</Badge>
+                  <h3 className="text-xl font-semibold mb-2">{solution.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{solution.description}</p>
+                  <div className="flex items-center justify-between pt-4 border-t border-border">
+                    <div className="flex items-center gap-1">
+                      <Star className="text-amber-500 fill-amber-500" size={16} />
+                      <span className="text-sm font-medium">{solution.rating}</span>
+                    </div>
+                    <Link to="/marketplace">
+                      <Button variant="ghost" size="sm" className="text-primary">
+                        Learn More <ArrowRight className="ml-1" size={14} />
+                      </Button>
+                    </Link>
                   </div>
-                  <Link to="/marketplace">
-                    <Button variant="ghost" size="sm" className="text-primary">
-                      Learn More <ArrowRight className="ml-1" size={14} />
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
+                </Card>
+              </ScrollSection>
             ))}
           </div>
 
@@ -478,15 +495,16 @@ const Home = () => {
       <section className="section-dark py-24 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <Badge className="badge-glow">Governance & Compliance</Badge>
-              <h2 className="text-4xl sm:text-5xl font-display font-bold leading-tight">
-                Embedded <span className="gradient-text">Trust</span> at Every Layer
-              </h2>
-              <p className="text-lg text-[hsl(220_12%_65%)] leading-relaxed">
-                Embedded policy-as-code ensures every AI workflow meets your nation's regulations 
-                and standards. Real-time audit logs and explainability are built in.
-              </p>
+            <ScrollSection animation="fade-left">
+              <div className="space-y-8">
+                <Badge className="badge-glow">Governance & Compliance</Badge>
+                <h2 className="text-4xl sm:text-5xl font-display font-bold leading-tight">
+                  Embedded <span className="gradient-text">Trust</span> at Every Layer
+                </h2>
+                <p className="text-lg text-[hsl(220_12%_65%)] leading-relaxed">
+                  Embedded policy-as-code ensures every AI workflow meets your nation's regulations 
+                  and standards. Real-time audit logs and explainability are built in.
+                </p>
               <ul className="space-y-4">
                 {[
                   "Multi-layer AI policy engine",
@@ -506,9 +524,10 @@ const Home = () => {
                   Learn About Governance <ArrowRight className="ml-2" size={18} />
                 </Button>
               </Link>
-            </div>
+              </div>
+            </ScrollSection>
 
-            <div className="relative">
+            <ScrollSection animation="fade-right"><div className="relative">
               <div className="aspect-square bg-primary/20 rounded-3xl absolute inset-0 blur-3xl" />
               <Card className="card-themed relative p-8">
                 <div className="space-y-6">
@@ -538,7 +557,7 @@ const Home = () => {
                   </div>
                 </div>
               </Card>
-            </div>
+            </div></ScrollSection>
           </div>
         </div>
       </section>
