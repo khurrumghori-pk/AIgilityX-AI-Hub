@@ -524,7 +524,8 @@ const Home = () => {
                   Learn About Governance <ArrowRight className="ml-2" size={18} />
                 </Button>
               </Link>
-            </div>
+              </div>
+            </ScrollSection>
 
             <div className="relative">
               <div className="aspect-square bg-primary/20 rounded-3xl absolute inset-0 blur-3xl" />
