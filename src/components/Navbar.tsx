@@ -103,8 +103,10 @@ const Navbar = () => {
     { path: "/governance", label: t("governance") },
     { path: "/pilots", label: t("pilots") },
     { path: "/intelligence", label: t("intelligence") },
-    { path: "/partner-dashboard", label: t("dashboard") },
+    { path: "/partners", label: t("partners") },
+    { path: "/how-it-works", label: t("howItWorks") },
     { path: "/about", label: t("about") },
+    { path: "/contact", label: t("contact") },
   ];
 
   const isActive = (path: string) => location.pathname === path;

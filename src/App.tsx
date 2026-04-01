@@ -43,6 +43,9 @@ const App = () => {
                   <Route path="/governance" element={<Governance />} />
                   <Route path="/pilots" element={<Pilots />} />
                   <Route path="/country/:country" element={<CountryLanding />} />
+                  <Route path="/partners" element={<FoundingPartners />} />
+                  <Route path="/how-it-works" element={<HowItWorks />} />
+                  <Route path="/contact" element={<Contact />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </main>
