@@ -557,9 +557,9 @@ const Home = () => {
                   </div>
                 </div>
               </Card>
-            </div>
             </div></ScrollSection>
           </div>
+        </div>
       </section>
 
       {/* Platform Features - Light */}
