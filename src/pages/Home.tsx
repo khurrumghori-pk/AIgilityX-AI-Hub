@@ -527,7 +527,7 @@ const Home = () => {
               </div>
             </ScrollSection>
 
-            <div className="relative">
+            <ScrollSection animation="fade-right"><div className="relative">
               <div className="aspect-square bg-primary/20 rounded-3xl absolute inset-0 blur-3xl" />
               <Card className="card-themed relative p-8">
                 <div className="space-y-6">
