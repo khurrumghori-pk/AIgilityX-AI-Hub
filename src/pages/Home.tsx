@@ -495,15 +495,16 @@ const Home = () => {
       <section className="section-dark py-24 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <Badge className="badge-glow">Governance & Compliance</Badge>
-              <h2 className="text-4xl sm:text-5xl font-display font-bold leading-tight">
-                Embedded <span className="gradient-text">Trust</span> at Every Layer
-              </h2>
-              <p className="text-lg text-[hsl(220_12%_65%)] leading-relaxed">
-                Embedded policy-as-code ensures every AI workflow meets your nation's regulations 
-                and standards. Real-time audit logs and explainability are built in.
-              </p>
+            <ScrollSection animation="fade-left">
+              <div className="space-y-8">
+                <Badge className="badge-glow">Governance & Compliance</Badge>
+                <h2 className="text-4xl sm:text-5xl font-display font-bold leading-tight">
+                  Embedded <span className="gradient-text">Trust</span> at Every Layer
+                </h2>
+                <p className="text-lg text-[hsl(220_12%_65%)] leading-relaxed">
+                  Embedded policy-as-code ensures every AI workflow meets your nation's regulations 
+                  and standards. Real-time audit logs and explainability are built in.
+                </p>
               <ul className="space-y-4">
                 {[
                   "Multi-layer AI policy engine",
