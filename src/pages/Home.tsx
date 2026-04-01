@@ -231,30 +231,34 @@ const Home = () => {
       <section className="section-dark py-24 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="card-themed p-8 border-destructive/20 hover-lift">
-              <div className="w-14 h-14 bg-destructive/10 rounded-xl flex items-center justify-center mb-5">
-                <Layers className="text-destructive" size={28} />
-              </div>
-              <h3 className="text-2xl font-display font-bold mb-3 text-[hsl(220_15%_95%)]">
-                Fragmented AI Ecosystem
-              </h3>
-              <p className="text-[hsl(220_12%_60%)] leading-relaxed">
-                Compute, models, and solutions are scattered across vendors. Organizations lack 
-                a unified approach to deploy and govern AI at national or enterprise scale.
-              </p>
-            </Card>
-            <Card className="card-themed p-8 border-primary/20 hover-lift">
-              <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-5">
-                <Network className="text-primary" size={28} />
-              </div>
-              <h3 className="text-2xl font-display font-bold mb-3 text-[hsl(220_15%_95%)]">
-                Sovereign AI Exchange
-              </h3>
-              <p className="text-[hsl(220_12%_60%)] leading-relaxed">
-                A governed, multi-partner hub connecting infrastructure, intelligence, and users 
-                at national scale — with built-in compliance, trust, and sovereignty.
-              </p>
-            </Card>
+            <ScrollSection animation="fade-left">
+              <Card className="card-themed p-8 border-destructive/20 hover-lift">
+                <div className="w-14 h-14 bg-destructive/10 rounded-xl flex items-center justify-center mb-5">
+                  <Layers className="text-destructive" size={28} />
+                </div>
+                <h3 className="text-2xl font-display font-bold mb-3 text-[hsl(220_15%_95%)]">
+                  Fragmented AI Ecosystem
+                </h3>
+                <p className="text-[hsl(220_12%_60%)] leading-relaxed">
+                  Compute, models, and solutions are scattered across vendors. Organizations lack 
+                  a unified approach to deploy and govern AI at national or enterprise scale.
+                </p>
+              </Card>
+            </ScrollSection>
+            <ScrollSection animation="fade-right">
+              <Card className="card-themed p-8 border-primary/20 hover-lift">
+                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-5">
+                  <Network className="text-primary" size={28} />
+                </div>
+                <h3 className="text-2xl font-display font-bold mb-3 text-[hsl(220_15%_95%)]">
+                  Sovereign AI Exchange
+                </h3>
+                <p className="text-[hsl(220_12%_60%)] leading-relaxed">
+                  A governed, multi-partner hub connecting infrastructure, intelligence, and users 
+                  at national scale — with built-in compliance, trust, and sovereignty.
+                </p>
+              </Card>
+            </ScrollSection>
           </div>
         </div>
       </section>
