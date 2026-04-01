@@ -460,22 +460,24 @@ const Home = () => {
 
           <div className="grid md:grid-cols-3 gap-6">
             {featuredSolutions.map((solution, index) => (
-              <Card key={index} className="p-6 hover-lift shadow-soft">
-                <Badge variant="secondary" className="mb-4">{solution.category}</Badge>
-                <h3 className="text-xl font-semibold mb-2">{solution.title}</h3>
-                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{solution.description}</p>
-                <div className="flex items-center justify-between pt-4 border-t border-border">
-                  <div className="flex items-center gap-1">
-                    <Star className="text-amber-500 fill-amber-500" size={16} />
-                    <span className="text-sm font-medium">{solution.rating}</span>
+              <ScrollSection key={index} animation="fade-up" delay={index * 120}>
+                <Card className="p-6 hover-lift shadow-soft h-full">
+                  <Badge variant="secondary" className="mb-4">{solution.category}</Badge>
+                  <h3 className="text-xl font-semibold mb-2">{solution.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{solution.description}</p>
+                  <div className="flex items-center justify-between pt-4 border-t border-border">
+                    <div className="flex items-center gap-1">
+                      <Star className="text-amber-500 fill-amber-500" size={16} />
+                      <span className="text-sm font-medium">{solution.rating}</span>
+                    </div>
+                    <Link to="/marketplace">
+                      <Button variant="ghost" size="sm" className="text-primary">
+                        Learn More <ArrowRight className="ml-1" size={14} />
+                      </Button>
+                    </Link>
                   </div>
-                  <Link to="/marketplace">
-                    <Button variant="ghost" size="sm" className="text-primary">
-                      Learn More <ArrowRight className="ml-1" size={14} />
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
+                </Card>
+              </ScrollSection>
             ))}
           </div>
 
