@@ -15,6 +15,9 @@ import About from "./pages/About";
 import Governance from "./pages/Governance";
 import Pilots from "./pages/Pilots";
 import CountryLanding from "./pages/CountryLanding";
+import FoundingPartners from "./pages/FoundingPartners";
+import HowItWorks from "./pages/HowItWorks";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +43,9 @@ const App = () => {
                   <Route path="/governance" element={<Governance />} />
                   <Route path="/pilots" element={<Pilots />} />
                   <Route path="/country/:country" element={<CountryLanding />} />
+                  <Route path="/partners" element={<FoundingPartners />} />
+                  <Route path="/how-it-works" element={<HowItWorks />} />
+                  <Route path="/contact" element={<Contact />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </main>
