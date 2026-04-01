@@ -282,13 +282,15 @@ const Home = () => {
             {howItWorksLayers.map((layer, index) => {
               const Icon = layer.icon;
               return (
-                <Card key={index} className="p-8 text-center hover-lift shadow-soft group">
-                  <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:shadow-glow transition-all">
-                    <Icon className="text-primary-foreground" size={32} />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">{layer.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{layer.description}</p>
-                </Card>
+                <ScrollSection key={index} animation="fade-up" delay={index * 150}>
+                  <Card className="p-8 text-center hover-lift shadow-soft group h-full">
+                    <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:shadow-glow transition-all">
+                      <Icon className="text-primary-foreground" size={32} />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3">{layer.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{layer.description}</p>
+                  </Card>
+                </ScrollSection>
               );
             })}
           </div>
