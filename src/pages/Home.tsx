@@ -266,15 +266,17 @@ const Home = () => {
       {/* How It Works - 4 Layers - Light */}
       <section className="section-light py-24 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <Badge className="bg-accent/10 text-accent border-accent/20">How It Works</Badge>
-            <h2 className="text-4xl sm:text-5xl font-display font-bold">
-              Four <span className="gradient-text">Layers</span> of Intelligence
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              A multi-layered architecture connecting compute, solutions, agents, and governance.
-            </p>
-          </div>
+          <ScrollSection animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+              <Badge className="bg-accent/10 text-accent border-accent/20">How It Works</Badge>
+              <h2 className="text-4xl sm:text-5xl font-display font-bold">
+                Four <span className="gradient-text">Layers</span> of Intelligence
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                A multi-layered architecture connecting compute, solutions, agents, and governance.
+              </p>
+            </div>
+          </ScrollSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {howItWorksLayers.map((layer, index) => {
