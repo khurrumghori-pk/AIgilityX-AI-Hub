@@ -446,15 +446,17 @@ const Home = () => {
       {/* Marketplace Preview - Light */}
       <section className="section-light py-24 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <Badge className="bg-accent/10 text-accent border-accent/20">Featured Solutions</Badge>
-            <h2 className="text-4xl sm:text-5xl font-display font-bold">
-              Featured AI <span className="gradient-text">Solutions</span>
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Curated, validated solutions from the sovereign AI marketplace.
-            </p>
-          </div>
+          <ScrollSection animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+              <Badge className="bg-accent/10 text-accent border-accent/20">Featured Solutions</Badge>
+              <h2 className="text-4xl sm:text-5xl font-display font-bold">
+                Featured AI <span className="gradient-text">Solutions</span>
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Curated, validated solutions from the sovereign AI marketplace.
+              </p>
+            </div>
+          </ScrollSection>
 
           <div className="grid md:grid-cols-3 gap-6">
             {featuredSolutions.map((solution, index) => (
