@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 import { 
   Search, 
   Star, 
@@ -18,17 +19,57 @@ import {
   GraduationCap, 
   Server,
   MapPin,
-  Building2
+  Building2,
+  LayoutGrid,
+  Loader2,
+  Plus
 } from "lucide-react";
+
+const categoryMap: Record<string, string> = {
+  ai_solutions: "solutions",
+  experts: "experts",
+  regulators: "regulators",
+  research_labs: "research",
+  certified_partners: "partners",
+  telcos_cloud: "telcos",
+};
+
+const categoryLabelMap: Record<string, string> = {
+  ai_solutions: "AI Solutions",
+  experts: "Expert",
+  regulators: "Regulator",
+  research_labs: "Research Lab",
+  certified_partners: "Certified Partner",
+  telcos_cloud: "Telco & Cloud",
+};
+
+interface Partner {
+  id: string;
+  name: string;
+  organization: string;
+  category: string;
+  industry: string;
+  region: string;
+  country: string;
+  description: string;
+  tags: string[];
+  rating: number;
+  reviews_count: number;
+  deployments: number;
+  pricing: string;
+}
 
 const Marketplace = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedIndustry, setSelectedIndustry] = useState("all");
   const [selectedRegion, setSelectedRegion] = useState("all");
   const [selectedCountry, setSelectedCountry] = useState("all");
-  const [activeCategory, setActiveCategory] = useState("solutions");
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [partners, setPartners] = useState<Partner[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const categoryTabs = [
+    { id: "all", label: "All", icon: LayoutGrid },
     { id: "solutions", label: "AI Solutions", icon: Cpu },
     { id: "experts", label: "Experts", icon: Users },
     { id: "regulators", label: "Regulators", icon: Scale },
@@ -37,126 +78,48 @@ const Marketplace = () => {
     { id: "telcos", label: "Telcos & Cloud", icon: Server },
   ];
 
-  const solutions = [
-    {
-      id: 1,
-      name: "AI-Powered Customer Analytics",
-      partner: "TelcoAI Solutions",
-      category: "Analytics",
-      industry: "Telecommunications",
-      region: "GCC & MENA",
-      country: "UAE",
-      description: "Advanced customer behavior analytics using machine learning to predict churn and optimize engagement.",
-      rating: 4.8,
-      reviews: 127,
-      deployments: 450,
-      price: "Enterprise",
-      tags: ["Churn Prediction", "Customer Insights", "Real-time Analytics"],
-      type: "solutions"
-    },
-    {
-      id: 2,
-      name: "Network Optimization AI",
-      partner: "SmartGrid AI",
-      category: "Infrastructure",
-      industry: "Telecommunications",
-      region: "GCC & MENA",
-      country: "Saudi Arabia",
-      description: "Intelligent network traffic management and optimization powered by deep learning algorithms.",
-      rating: 4.9,
-      reviews: 89,
-      deployments: 320,
-      price: "Contact Sales",
-      tags: ["5G Optimization", "Traffic Management", "Predictive Maintenance"],
-      type: "solutions"
-    },
-    {
-      id: 3,
-      name: "Arabic NLP Suite",
-      partner: "LanguageAI",
-      category: "NLP",
-      industry: "Government",
-      region: "GCC & MENA",
-      country: "Qatar",
-      description: "Comprehensive natural language processing tools optimized for Arabic language and dialects.",
-      rating: 4.7,
-      reviews: 203,
-      deployments: 680,
-      price: "Starting at $5,000/mo",
-      tags: ["Arabic Language", "Sentiment Analysis", "Translation"],
-      type: "solutions"
-    },
-    {
-      id: 4,
-      name: "Dr. Ahmed Al-Hassan",
-      partner: "Independent Consultant",
-      category: "AI Strategy",
-      industry: "Multiple",
-      region: "GCC & MENA",
-      country: "UAE",
-      description: "20+ years experience in AI strategy, digital transformation, and enterprise AI implementation.",
-      rating: 4.9,
-      reviews: 56,
-      deployments: 180,
-      price: "$500/hr",
-      tags: ["Strategy", "Consulting", "Implementation"],
-      type: "experts"
-    },
-    {
-      id: 5,
-      name: "KACST AI Research Lab",
-      partner: "King Abdulaziz City",
-      category: "Research",
-      industry: "Government",
-      region: "GCC & MENA",
-      country: "Saudi Arabia",
-      description: "Leading research in Arabic NLP, computer vision, and sovereign AI infrastructure.",
-      rating: 4.8,
-      reviews: 42,
-      deployments: 95,
-      price: "Collaboration",
-      tags: ["NLP Research", "Computer Vision", "Sovereign AI"],
-      type: "research"
-    },
-    {
-      id: 6,
-      name: "stc Cloud Platform",
-      partner: "stc",
-      category: "Cloud Infrastructure",
-      industry: "Telecommunications",
-      region: "GCC & MENA",
-      country: "Saudi Arabia",
-      description: "Sovereign cloud platform with GPU-as-a-Service for AI workloads and edge computing.",
-      rating: 4.9,
-      reviews: 167,
-      deployments: 520,
-      price: "Pay-as-you-go",
-      tags: ["GPU Cloud", "Edge Computing", "Sovereign"],
-      type: "telcos"
-    }
-  ];
+  useEffect(() => {
+    fetchPartners();
+  }, []);
 
-  const filteredSolutions = solutions.filter(solution => {
-    const matchesSearch = solution.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         solution.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         solution.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
-    const matchesIndustry = selectedIndustry === "all" || solution.industry === selectedIndustry;
-    const matchesRegion = selectedRegion === "all" || solution.region === selectedRegion;
-    const matchesCountry = selectedCountry === "all" || solution.country === selectedCountry;
-    const matchesCategory = activeCategory === "all" || solution.type === activeCategory;
+  const fetchPartners = async () => {
+    setLoading(true);
+    const { data, error } = await supabase.from("partners").select("*");
+    if (!error && data) {
+      setPartners(data.map((p: any) => ({
+        ...p,
+        tags: p.tags || [],
+        rating: Number(p.rating) || 0,
+      })));
+    }
+    setLoading(false);
+  };
+
+  const getTypeFromCategory = (cat: string) => categoryMap[cat] || cat;
+
+  const filteredPartners = partners.filter(p => {
+    const type = getTypeFromCategory(p.category);
+    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         p.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         p.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+    const matchesIndustry = selectedIndustry === "all" || p.industry === selectedIndustry;
+    const matchesRegion = selectedRegion === "all" || p.region === selectedRegion;
+    const matchesCountry = selectedCountry === "all" || p.country === selectedCountry;
+    const matchesCategory = activeCategory === "all" || type === activeCategory;
     return matchesSearch && matchesIndustry && matchesRegion && matchesCountry && matchesCategory;
   });
 
   const getIconForType = (type: string) => {
+    const mapped = categoryMap[type] || type;
     const icons: Record<string, any> = {
       solutions: Cpu,
       experts: Users,
       regulators: Scale,
       research: FlaskConical,
       partners: GraduationCap,
-      telcos: Server
+      telcos: Server,
     };
-    return icons[type] || Cpu;
+    return icons[mapped] || Cpu;
   };
 
   return (
@@ -265,82 +228,97 @@ const Marketplace = () => {
           {/* Results Count */}
           <div className="mb-6 flex items-center justify-between">
             <p className="text-muted-foreground">
-              Showing <span className="font-semibold text-foreground">{filteredSolutions.length}</span> results
+              Showing <span className="font-semibold text-foreground">{filteredPartners.length}</span> results
             </p>
-            <Button variant="outline" size="sm">
-              <Filter size={16} className="mr-2" />
-              Advanced Filters
-            </Button>
+            <div className="flex items-center gap-3">
+              <Link to="/partner-registration">
+                <Button size="sm" className="bg-gradient-primary hover:opacity-90">
+                  <Plus size={16} className="mr-2" />
+                  Register as Partner
+                </Button>
+              </Link>
+              <Button variant="outline" size="sm">
+                <Filter size={16} className="mr-2" />
+                Advanced Filters
+              </Button>
+            </div>
           </div>
 
+          {/* Loading */}
+          {loading && (
+            <div className="flex items-center justify-center py-20">
+              <Loader2 className="animate-spin text-primary" size={40} />
+            </div>
+          )}
+
           {/* Solutions Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredSolutions.map((solution) => {
-              const TypeIcon = getIconForType(solution.type);
-              return (
-                <Card key={solution.id} className="p-6 hover-lift flex flex-col shadow-soft">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center">
-                      <TypeIcon className="text-primary-foreground" size={24} />
-                    </div>
-                    <Badge variant="secondary" className="text-xs">
-                      {solution.category}
-                    </Badge>
-                  </div>
-
-                  <h3 className="text-xl font-semibold mb-2">{solution.name}</h3>
-                  <p className="text-sm text-muted-foreground mb-1 flex items-center gap-1">
-                    <Building2 size={14} />
-                    {solution.partner}
-                  </p>
-                  <p className="text-xs text-muted-foreground mb-3 flex items-center gap-1">
-                    <MapPin size={12} />
-                    {solution.region} • {solution.country}
-                  </p>
-                  
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="flex items-center">
-                      <Star className="text-amber-500 fill-amber-500" size={16} />
-                      <span className="ml-1 text-sm font-medium">{solution.rating}</span>
-                    </div>
-                    <span className="text-sm text-muted-foreground">({solution.reviews} reviews)</span>
-                  </div>
-
-                  <p className="text-sm text-muted-foreground mb-4 flex-grow line-clamp-3">
-                    {solution.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {solution.tags.slice(0, 2).map((tag, idx) => (
-                      <Badge key={idx} variant="outline" className="text-xs">
-                        {tag}
+          {!loading && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredPartners.map((partner) => {
+                const TypeIcon = getIconForType(partner.category);
+                return (
+                  <Card key={partner.id} className="p-6 hover-lift flex flex-col shadow-soft">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center">
+                        <TypeIcon className="text-primary-foreground" size={24} />
+                      </div>
+                      <Badge variant="secondary" className="text-xs">
+                        {categoryLabelMap[partner.category] || partner.category}
                       </Badge>
-                    ))}
-                  </div>
+                    </div>
 
-                  <div className="pt-4 border-t border-border space-y-3">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Deployments</span>
-                      <span className="font-medium">{solution.deployments}+</span>
+                    <h3 className="text-xl font-semibold mb-2">{partner.name}</h3>
+                    <p className="text-sm text-muted-foreground mb-1 flex items-center gap-1">
+                      <Building2 size={14} />
+                      {partner.organization}
+                    </p>
+                    <p className="text-xs text-muted-foreground mb-3 flex items-center gap-1">
+                      <MapPin size={12} />
+                      {partner.region} • {partner.country}
+                    </p>
+                    
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="flex items-center">
+                        <Star className="text-amber-500 fill-amber-500" size={16} />
+                        <span className="ml-1 text-sm font-medium">{partner.rating}</span>
+                      </div>
+                      <span className="text-sm text-muted-foreground">({partner.reviews_count} reviews)</span>
                     </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Pricing</span>
-                      <span className="font-medium">{solution.price}</span>
+
+                    <p className="text-sm text-muted-foreground mb-4 flex-grow line-clamp-3">
+                      {partner.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {partner.tags.slice(0, 2).map((tag, idx) => (
+                        <Badge key={idx} variant="outline" className="text-xs">
+                          {tag}
+                        </Badge>
+                      ))}
                     </div>
-                    <Link to={`/solution/${solution.id}`}>
+
+                    <div className="pt-4 border-t border-border space-y-3">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Deployments</span>
+                        <span className="font-medium">{partner.deployments}+</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Pricing</span>
+                        <span className="font-medium">{partner.pricing}</span>
+                      </div>
                       <Button className="w-full bg-gradient-primary hover:opacity-90">
                         View Details
                         <ArrowRight className="ml-2" size={16} />
                       </Button>
-                    </Link>
-                  </div>
-                </Card>
-              );
-            })}
-          </div>
+                    </div>
+                  </Card>
+                );
+              })}
+            </div>
+          )}
 
           {/* Empty State */}
-          {filteredSolutions.length === 0 && (
+          {!loading && filteredPartners.length === 0 && (
             <div className="text-center py-20">
               <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
                 <Search className="text-muted-foreground" size={32} />
@@ -352,7 +330,7 @@ const Marketplace = () => {
                 setSelectedIndustry("all");
                 setSelectedRegion("all");
                 setSelectedCountry("all");
-                setActiveCategory("solutions");
+                setActiveCategory("all");
               }}>
                 Clear All Filters
               </Button>

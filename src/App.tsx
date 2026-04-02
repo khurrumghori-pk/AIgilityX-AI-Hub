@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,6 +17,7 @@ import CountryLanding from "./pages/CountryLanding";
 import FoundingPartners from "./pages/FoundingPartners";
 import HowItWorks from "./pages/HowItWorks";
 import Contact from "./pages/Contact";
+import PartnerRegistration from "./pages/PartnerRegistration";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -46,6 +46,7 @@ const App = () => {
                   <Route path="/partners" element={<FoundingPartners />} />
                   <Route path="/how-it-works" element={<HowItWorks />} />
                   <Route path="/contact" element={<Contact />} />
+                  <Route path="/partner-registration" element={<PartnerRegistration />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </main>
