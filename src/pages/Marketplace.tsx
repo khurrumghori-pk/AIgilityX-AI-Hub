@@ -306,9 +306,11 @@ const Marketplace = () => {
                         <span className="text-muted-foreground">Pricing</span>
                         <span className="font-medium">{partner.pricing}</span>
                       </div>
-                      <Button className="w-full bg-gradient-primary hover:opacity-90">
-                        View Details
-                        <ArrowRight className="ml-2" size={16} />
+                      <Button asChild className="w-full bg-gradient-primary hover:opacity-90">
+                        <Link to={`/partner/${partner.id}`}>
+                          View Details
+                          <ArrowRight className="ml-2" size={16} />
+                        </Link>
                       </Button>
                     </div>
                   </Card>

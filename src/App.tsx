@@ -18,6 +18,8 @@ import FoundingPartners from "./pages/FoundingPartners";
 import HowItWorks from "./pages/HowItWorks";
 import Contact from "./pages/Contact";
 import PartnerRegistration from "./pages/PartnerRegistration";
+import PartnerDetail from "./pages/PartnerDetail";
+import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -47,6 +49,8 @@ const App = () => {
                   <Route path="/how-it-works" element={<HowItWorks />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/partner-registration" element={<PartnerRegistration />} />
+                  <Route path="/partner/:id" element={<PartnerDetail />} />
+                  <Route path="/admin" element={<AdminDashboard />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </main>
