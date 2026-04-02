@@ -228,82 +228,97 @@ const Marketplace = () => {
           {/* Results Count */}
           <div className="mb-6 flex items-center justify-between">
             <p className="text-muted-foreground">
-              Showing <span className="font-semibold text-foreground">{filteredSolutions.length}</span> results
+              Showing <span className="font-semibold text-foreground">{filteredPartners.length}</span> results
             </p>
-            <Button variant="outline" size="sm">
-              <Filter size={16} className="mr-2" />
-              Advanced Filters
-            </Button>
+            <div className="flex items-center gap-3">
+              <Link to="/partner-registration">
+                <Button size="sm" className="bg-gradient-primary hover:opacity-90">
+                  <Plus size={16} className="mr-2" />
+                  Register as Partner
+                </Button>
+              </Link>
+              <Button variant="outline" size="sm">
+                <Filter size={16} className="mr-2" />
+                Advanced Filters
+              </Button>
+            </div>
           </div>
 
+          {/* Loading */}
+          {loading && (
+            <div className="flex items-center justify-center py-20">
+              <Loader2 className="animate-spin text-primary" size={40} />
+            </div>
+          )}
+
           {/* Solutions Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredSolutions.map((solution) => {
-              const TypeIcon = getIconForType(solution.type);
-              return (
-                <Card key={solution.id} className="p-6 hover-lift flex flex-col shadow-soft">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center">
-                      <TypeIcon className="text-primary-foreground" size={24} />
-                    </div>
-                    <Badge variant="secondary" className="text-xs">
-                      {solution.category}
-                    </Badge>
-                  </div>
-
-                  <h3 className="text-xl font-semibold mb-2">{solution.name}</h3>
-                  <p className="text-sm text-muted-foreground mb-1 flex items-center gap-1">
-                    <Building2 size={14} />
-                    {solution.partner}
-                  </p>
-                  <p className="text-xs text-muted-foreground mb-3 flex items-center gap-1">
-                    <MapPin size={12} />
-                    {solution.region} • {solution.country}
-                  </p>
-                  
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="flex items-center">
-                      <Star className="text-amber-500 fill-amber-500" size={16} />
-                      <span className="ml-1 text-sm font-medium">{solution.rating}</span>
-                    </div>
-                    <span className="text-sm text-muted-foreground">({solution.reviews} reviews)</span>
-                  </div>
-
-                  <p className="text-sm text-muted-foreground mb-4 flex-grow line-clamp-3">
-                    {solution.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {solution.tags.slice(0, 2).map((tag, idx) => (
-                      <Badge key={idx} variant="outline" className="text-xs">
-                        {tag}
+          {!loading && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredPartners.map((partner) => {
+                const TypeIcon = getIconForType(partner.category);
+                return (
+                  <Card key={partner.id} className="p-6 hover-lift flex flex-col shadow-soft">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center">
+                        <TypeIcon className="text-primary-foreground" size={24} />
+                      </div>
+                      <Badge variant="secondary" className="text-xs">
+                        {categoryLabelMap[partner.category] || partner.category}
                       </Badge>
-                    ))}
-                  </div>
+                    </div>
 
-                  <div className="pt-4 border-t border-border space-y-3">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Deployments</span>
-                      <span className="font-medium">{solution.deployments}+</span>
+                    <h3 className="text-xl font-semibold mb-2">{partner.name}</h3>
+                    <p className="text-sm text-muted-foreground mb-1 flex items-center gap-1">
+                      <Building2 size={14} />
+                      {partner.organization}
+                    </p>
+                    <p className="text-xs text-muted-foreground mb-3 flex items-center gap-1">
+                      <MapPin size={12} />
+                      {partner.region} • {partner.country}
+                    </p>
+                    
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="flex items-center">
+                        <Star className="text-amber-500 fill-amber-500" size={16} />
+                        <span className="ml-1 text-sm font-medium">{partner.rating}</span>
+                      </div>
+                      <span className="text-sm text-muted-foreground">({partner.reviews_count} reviews)</span>
                     </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Pricing</span>
-                      <span className="font-medium">{solution.price}</span>
+
+                    <p className="text-sm text-muted-foreground mb-4 flex-grow line-clamp-3">
+                      {partner.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {partner.tags.slice(0, 2).map((tag, idx) => (
+                        <Badge key={idx} variant="outline" className="text-xs">
+                          {tag}
+                        </Badge>
+                      ))}
                     </div>
-                    <Link to={`/solution/${solution.id}`}>
+
+                    <div className="pt-4 border-t border-border space-y-3">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Deployments</span>
+                        <span className="font-medium">{partner.deployments}+</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Pricing</span>
+                        <span className="font-medium">{partner.pricing}</span>
+                      </div>
                       <Button className="w-full bg-gradient-primary hover:opacity-90">
                         View Details
                         <ArrowRight className="ml-2" size={16} />
                       </Button>
-                    </Link>
-                  </div>
-                </Card>
-              );
-            })}
-          </div>
+                    </div>
+                  </Card>
+                );
+              })}
+            </div>
+          )}
 
           {/* Empty State */}
-          {filteredSolutions.length === 0 && (
+          {!loading && filteredPartners.length === 0 && (
             <div className="text-center py-20">
               <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
                 <Search className="text-muted-foreground" size={32} />
@@ -315,7 +330,7 @@ const Marketplace = () => {
                 setSelectedIndustry("all");
                 setSelectedRegion("all");
                 setSelectedCountry("all");
-                setActiveCategory("solutions");
+                setActiveCategory("all");
               }}>
                 Clear All Filters
               </Button>
