@@ -17,6 +17,7 @@ import CountryLanding from "./pages/CountryLanding";
 import FoundingPartners from "./pages/FoundingPartners";
 import HowItWorks from "./pages/HowItWorks";
 import Contact from "./pages/Contact";
+import PartnerRegistration from "./pages/PartnerRegistration";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
