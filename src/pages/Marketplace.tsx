@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 import { 
   Search, 
   Star, 
@@ -18,17 +19,57 @@ import {
   GraduationCap, 
   Server,
   MapPin,
-  Building2
+  Building2,
+  LayoutGrid,
+  Loader2,
+  Plus
 } from "lucide-react";
+
+const categoryMap: Record<string, string> = {
+  ai_solutions: "solutions",
+  experts: "experts",
+  regulators: "regulators",
+  research_labs: "research",
+  certified_partners: "partners",
+  telcos_cloud: "telcos",
+};
+
+const categoryLabelMap: Record<string, string> = {
+  ai_solutions: "AI Solutions",
+  experts: "Expert",
+  regulators: "Regulator",
+  research_labs: "Research Lab",
+  certified_partners: "Certified Partner",
+  telcos_cloud: "Telco & Cloud",
+};
+
+interface Partner {
+  id: string;
+  name: string;
+  organization: string;
+  category: string;
+  industry: string;
+  region: string;
+  country: string;
+  description: string;
+  tags: string[];
+  rating: number;
+  reviews_count: number;
+  deployments: number;
+  pricing: string;
+}
 
 const Marketplace = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedIndustry, setSelectedIndustry] = useState("all");
   const [selectedRegion, setSelectedRegion] = useState("all");
   const [selectedCountry, setSelectedCountry] = useState("all");
-  const [activeCategory, setActiveCategory] = useState("solutions");
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [partners, setPartners] = useState<Partner[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const categoryTabs = [
+    { id: "all", label: "All", icon: LayoutGrid },
     { id: "solutions", label: "AI Solutions", icon: Cpu },
     { id: "experts", label: "Experts", icon: Users },
     { id: "regulators", label: "Regulators", icon: Scale },
@@ -37,126 +78,48 @@ const Marketplace = () => {
     { id: "telcos", label: "Telcos & Cloud", icon: Server },
   ];
 
-  const solutions = [
-    {
-      id: 1,
-      name: "AI-Powered Customer Analytics",
-      partner: "TelcoAI Solutions",
-      category: "Analytics",
-      industry: "Telecommunications",
-      region: "GCC & MENA",
-      country: "UAE",
-      description: "Advanced customer behavior analytics using machine learning to predict churn and optimize engagement.",
-      rating: 4.8,
-      reviews: 127,
-      deployments: 450,
-      price: "Enterprise",
-      tags: ["Churn Prediction", "Customer Insights", "Real-time Analytics"],
-      type: "solutions"
-    },
-    {
-      id: 2,
-      name: "Network Optimization AI",
-      partner: "SmartGrid AI",
-      category: "Infrastructure",
-      industry: "Telecommunications",
-      region: "GCC & MENA",
-      country: "Saudi Arabia",
-      description: "Intelligent network traffic management and optimization powered by deep learning algorithms.",
-      rating: 4.9,
-      reviews: 89,
-      deployments: 320,
-      price: "Contact Sales",
-      tags: ["5G Optimization", "Traffic Management", "Predictive Maintenance"],
-      type: "solutions"
-    },
-    {
-      id: 3,
-      name: "Arabic NLP Suite",
-      partner: "LanguageAI",
-      category: "NLP",
-      industry: "Government",
-      region: "GCC & MENA",
-      country: "Qatar",
-      description: "Comprehensive natural language processing tools optimized for Arabic language and dialects.",
-      rating: 4.7,
-      reviews: 203,
-      deployments: 680,
-      price: "Starting at $5,000/mo",
-      tags: ["Arabic Language", "Sentiment Analysis", "Translation"],
-      type: "solutions"
-    },
-    {
-      id: 4,
-      name: "Dr. Ahmed Al-Hassan",
-      partner: "Independent Consultant",
-      category: "AI Strategy",
-      industry: "Multiple",
-      region: "GCC & MENA",
-      country: "UAE",
-      description: "20+ years experience in AI strategy, digital transformation, and enterprise AI implementation.",
-      rating: 4.9,
-      reviews: 56,
-      deployments: 180,
-      price: "$500/hr",
-      tags: ["Strategy", "Consulting", "Implementation"],
-      type: "experts"
-    },
-    {
-      id: 5,
-      name: "KACST AI Research Lab",
-      partner: "King Abdulaziz City",
-      category: "Research",
-      industry: "Government",
-      region: "GCC & MENA",
-      country: "Saudi Arabia",
-      description: "Leading research in Arabic NLP, computer vision, and sovereign AI infrastructure.",
-      rating: 4.8,
-      reviews: 42,
-      deployments: 95,
-      price: "Collaboration",
-      tags: ["NLP Research", "Computer Vision", "Sovereign AI"],
-      type: "research"
-    },
-    {
-      id: 6,
-      name: "stc Cloud Platform",
-      partner: "stc",
-      category: "Cloud Infrastructure",
-      industry: "Telecommunications",
-      region: "GCC & MENA",
-      country: "Saudi Arabia",
-      description: "Sovereign cloud platform with GPU-as-a-Service for AI workloads and edge computing.",
-      rating: 4.9,
-      reviews: 167,
-      deployments: 520,
-      price: "Pay-as-you-go",
-      tags: ["GPU Cloud", "Edge Computing", "Sovereign"],
-      type: "telcos"
-    }
-  ];
+  useEffect(() => {
+    fetchPartners();
+  }, []);
 
-  const filteredSolutions = solutions.filter(solution => {
-    const matchesSearch = solution.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         solution.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         solution.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
-    const matchesIndustry = selectedIndustry === "all" || solution.industry === selectedIndustry;
-    const matchesRegion = selectedRegion === "all" || solution.region === selectedRegion;
-    const matchesCountry = selectedCountry === "all" || solution.country === selectedCountry;
-    const matchesCategory = activeCategory === "all" || solution.type === activeCategory;
+  const fetchPartners = async () => {
+    setLoading(true);
+    const { data, error } = await supabase.from("partners").select("*");
+    if (!error && data) {
+      setPartners(data.map((p: any) => ({
+        ...p,
+        tags: p.tags || [],
+        rating: Number(p.rating) || 0,
+      })));
+    }
+    setLoading(false);
+  };
+
+  const getTypeFromCategory = (cat: string) => categoryMap[cat] || cat;
+
+  const filteredPartners = partners.filter(p => {
+    const type = getTypeFromCategory(p.category);
+    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         p.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         p.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+    const matchesIndustry = selectedIndustry === "all" || p.industry === selectedIndustry;
+    const matchesRegion = selectedRegion === "all" || p.region === selectedRegion;
+    const matchesCountry = selectedCountry === "all" || p.country === selectedCountry;
+    const matchesCategory = activeCategory === "all" || type === activeCategory;
     return matchesSearch && matchesIndustry && matchesRegion && matchesCountry && matchesCategory;
   });
 
   const getIconForType = (type: string) => {
+    const mapped = categoryMap[type] || type;
     const icons: Record<string, any> = {
       solutions: Cpu,
       experts: Users,
       regulators: Scale,
       research: FlaskConical,
       partners: GraduationCap,
-      telcos: Server
+      telcos: Server,
     };
-    return icons[type] || Cpu;
+    return icons[mapped] || Cpu;
   };
 
   return (
