@@ -14,7 +14,75 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      partners: {
+        Row: {
+          category: Database["public"]["Enums"]["partner_category"]
+          country: string
+          created_at: string
+          deployments: number | null
+          description: string
+          email: string
+          id: string
+          industry: string
+          logo_url: string | null
+          name: string
+          organization: string
+          phone: string | null
+          pricing: string | null
+          rating: number | null
+          region: string
+          reviews_count: number | null
+          status: string
+          tags: string[] | null
+          updated_at: string
+          website: string | null
+        }
+        Insert: {
+          category: Database["public"]["Enums"]["partner_category"]
+          country?: string
+          created_at?: string
+          deployments?: number | null
+          description?: string
+          email: string
+          id?: string
+          industry?: string
+          logo_url?: string | null
+          name: string
+          organization: string
+          phone?: string | null
+          pricing?: string | null
+          rating?: number | null
+          region?: string
+          reviews_count?: number | null
+          status?: string
+          tags?: string[] | null
+          updated_at?: string
+          website?: string | null
+        }
+        Update: {
+          category?: Database["public"]["Enums"]["partner_category"]
+          country?: string
+          created_at?: string
+          deployments?: number | null
+          description?: string
+          email?: string
+          id?: string
+          industry?: string
+          logo_url?: string | null
+          name?: string
+          organization?: string
+          phone?: string | null
+          pricing?: string | null
+          rating?: number | null
+          region?: string
+          reviews_count?: number | null
+          status?: string
+          tags?: string[] | null
+          updated_at?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +91,13 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      partner_category:
+        | "ai_solutions"
+        | "experts"
+        | "regulators"
+        | "research_labs"
+        | "certified_partners"
+        | "telcos_cloud"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +224,15 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      partner_category: [
+        "ai_solutions",
+        "experts",
+        "regulators",
+        "research_labs",
+        "certified_partners",
+        "telcos_cloud",
+      ],
+    },
   },
 } as const
