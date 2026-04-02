@@ -49,6 +49,8 @@ const App = () => {
                   <Route path="/how-it-works" element={<HowItWorks />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/partner-registration" element={<PartnerRegistration />} />
+                  <Route path="/partner/:id" element={<PartnerDetail />} />
+                  <Route path="/admin" element={<AdminDashboard />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </main>
