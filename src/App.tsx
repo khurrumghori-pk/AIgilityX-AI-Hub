@@ -18,6 +18,8 @@ import FoundingPartners from "./pages/FoundingPartners";
 import HowItWorks from "./pages/HowItWorks";
 import Contact from "./pages/Contact";
 import PartnerRegistration from "./pages/PartnerRegistration";
+import PartnerDetail from "./pages/PartnerDetail";
+import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
