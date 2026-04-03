@@ -37,6 +37,9 @@ const translations: Record<Language, Record<string, string>> = {
     howItWorks: "How It Works", contact: "Contact", joinEcosystem: "Become a Partner",
     aiHub: "AI Hub", adminPanel: "Admin Panel", signOut: "Sign Out",
     regionalHubs: "Regional Hubs", uae: "UAE", ksa: "KSA", pakistan: "Pakistan",
+    ecosystem: "Ecosystem", egypt: "Egypt", qatar: "Qatar", bahrain: "Bahrain",
+    india: "India", bangladesh: "Bangladesh", uk: "UK", germany: "Germany",
+    gcc: "GCC & MENA", southAsia: "South Asia", europe: "Europe",
   },
   ar: {
     home: "الرئيسية", marketplace: "السوق", intelligence: "الذكاء",
