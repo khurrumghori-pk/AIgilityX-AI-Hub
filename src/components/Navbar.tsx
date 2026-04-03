@@ -117,12 +117,15 @@ const Navbar = () => {
   const navLinks = [
     { path: "/", label: t("home") },
     { path: "/marketplace", label: t("marketplace") },
-    { path: "/governance", label: t("governance") },
-    { path: "/pilots", label: t("pilots") },
-    { path: "/intelligence", label: t("intelligence") },
     { path: "/how-it-works", label: t("howItWorks") },
     { path: "/about", label: t("about") },
     { path: "/contact", label: t("contact") },
+  ];
+
+  const ecosystemLinks = [
+    { path: "/governance", label: t("governance") },
+    { path: "/pilots", label: t("pilots") },
+    { path: "/intelligence", label: t("intelligence") },
   ];
 
   const isActive = (path: string) => location.pathname === path;
