@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Menu, X, Globe, ChevronDown, Users, BarChart3, Shield, MapPin, LogOut } from "lucide-react";
+import { Menu, X, Globe, ChevronDown, Users, BarChart3, Shield, MapPin, LogOut, Layers } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
 type Language = "en" | "ar" | "ur";
