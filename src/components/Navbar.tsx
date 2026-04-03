@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Menu, X, Globe, ChevronDown, Users, BarChart3, Shield, MapPin, LogOut } from "lucide-react";
+import { Menu, X, Globe, ChevronDown, Users, BarChart3, Shield, MapPin, LogOut, Layers } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
 type Language = "en" | "ar" | "ur";
@@ -37,6 +37,9 @@ const translations: Record<Language, Record<string, string>> = {
     howItWorks: "How It Works", contact: "Contact", joinEcosystem: "Become a Partner",
     aiHub: "AI Hub", adminPanel: "Admin Panel", signOut: "Sign Out",
     regionalHubs: "Regional Hubs", uae: "UAE", ksa: "KSA", pakistan: "Pakistan",
+    ecosystem: "Ecosystem", egypt: "Egypt", qatar: "Qatar", bahrain: "Bahrain",
+    india: "India", bangladesh: "Bangladesh", uk: "UK", germany: "Germany",
+    gcc: "GCC & MENA", southAsia: "South Asia", europe: "Europe",
   },
   ar: {
     home: "الرئيسية", marketplace: "السوق", intelligence: "الذكاء",
@@ -45,6 +48,9 @@ const translations: Record<Language, Record<string, string>> = {
     howItWorks: "كيف يعمل", contact: "اتصل بنا", joinEcosystem: "انضم كشريك",
     aiHub: "منصة الذكاء", adminPanel: "لوحة الإدارة", signOut: "تسجيل خروج",
     regionalHubs: "المراكز الإقليمية", uae: "الإمارات", ksa: "السعودية", pakistan: "باكستان",
+    ecosystem: "النظام البيئي", egypt: "مصر", qatar: "قطر", bahrain: "البحرين",
+    india: "الهند", bangladesh: "بنغلاديش", uk: "بريطانيا", germany: "ألمانيا",
+    gcc: "الخليج والشرق الأوسط", southAsia: "جنوب آسيا", europe: "أوروبا",
   },
   ur: {
     home: "ہوم", marketplace: "مارکیٹ", intelligence: "انٹیلیجنس",
@@ -53,6 +59,9 @@ const translations: Record<Language, Record<string, string>> = {
     howItWorks: "کیسے کام کرتا ہے", contact: "رابطہ کریں", joinEcosystem: "پارٹنر بنیں",
     aiHub: "اے آئی ہب", adminPanel: "ایڈمن پینل", signOut: "سائن آؤٹ",
     regionalHubs: "علاقائی مراکز", uae: "یو اے ای", ksa: "سعودی عرب", pakistan: "پاکستان",
+    ecosystem: "ایکو سسٹم", egypt: "مصر", qatar: "قطر", bahrain: "بحرین",
+    india: "بھارت", bangladesh: "بنگلہ دیش", uk: "برطانیہ", germany: "جرمنی",
+    gcc: "خلیج اور مشرق وسطیٰ", southAsia: "جنوبی ایشیا", europe: "یورپ",
   },
 };
 
@@ -71,10 +80,32 @@ export const useLanguage = () => useContext(LanguageContext);
 
 const languageLabels: Record<Language, string> = { en: "English", ar: "العربية", ur: "اردو" };
 
-const regionalHubs = [
-  { path: "/country/uae", labelKey: "uae", flag: "🇦🇪" },
-  { path: "/country/ksa", labelKey: "ksa", flag: "🇸🇦" },
-  { path: "/country/pakistan", labelKey: "pakistan", flag: "🇵🇰" },
+const regionalHubGroups = [
+  {
+    labelKey: "gcc",
+    hubs: [
+      { path: "/country/uae", labelKey: "uae", flag: "🇦🇪" },
+      { path: "/country/ksa", labelKey: "ksa", flag: "🇸🇦" },
+      { path: "/country/qatar", labelKey: "qatar", flag: "🇶🇦" },
+      { path: "/country/bahrain", labelKey: "bahrain", flag: "🇧🇭" },
+      { path: "/country/egypt", labelKey: "egypt", flag: "🇪🇬" },
+    ],
+  },
+  {
+    labelKey: "southAsia",
+    hubs: [
+      { path: "/country/pakistan", labelKey: "pakistan", flag: "🇵🇰" },
+      { path: "/country/india", labelKey: "india", flag: "🇮🇳" },
+      { path: "/country/bangladesh", labelKey: "bangladesh", flag: "🇧🇩" },
+    ],
+  },
+  {
+    labelKey: "europe",
+    hubs: [
+      { path: "/country/uk", labelKey: "uk", flag: "🇬🇧" },
+      { path: "/country/germany", labelKey: "germany", flag: "🇩🇪" },
+    ],
+  },
 ];
 
 const Navbar = () => {
@@ -86,12 +117,15 @@ const Navbar = () => {
   const navLinks = [
     { path: "/", label: t("home") },
     { path: "/marketplace", label: t("marketplace") },
-    { path: "/governance", label: t("governance") },
-    { path: "/pilots", label: t("pilots") },
-    { path: "/intelligence", label: t("intelligence") },
     { path: "/how-it-works", label: t("howItWorks") },
     { path: "/about", label: t("about") },
     { path: "/contact", label: t("contact") },
+  ];
+
+  const ecosystemLinks = [
+    { path: "/governance", label: t("governance") },
+    { path: "/pilots", label: t("pilots") },
+    { path: "/intelligence", label: t("intelligence") },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -125,6 +159,26 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
+
+            {/* Ecosystem Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className={`flex items-center gap-1 ${linkClass(ecosystemLinks.some(l => isActive(l.path)))}`}>
+                  <Layers size={14} />
+                  {t("ecosystem")}
+                  <ChevronDown size={14} />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="bg-[hsl(220_22%_12%)] border-[hsl(220_18%_20%)] w-48">
+                {ecosystemLinks.map((link) => (
+                  <DropdownMenuItem key={link.path} asChild>
+                    <Link to={link.path} className="flex items-center gap-2 cursor-pointer text-[hsl(220_12%_70%)] hover:text-[hsl(220_15%_95%)]">
+                      {link.label}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             {/* Partners Dropdown */}
             <DropdownMenu>
@@ -171,14 +225,20 @@ const Navbar = () => {
                   <ChevronDown size={14} className="ml-1" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="bg-[hsl(220_22%_12%)] border-[hsl(220_18%_20%)]">
-                {regionalHubs.map((hub) => (
-                  <DropdownMenuItem key={hub.path} asChild>
-                    <Link to={hub.path} className="flex items-center gap-2 cursor-pointer text-[hsl(220_12%_70%)] hover:text-[hsl(220_15%_95%)]">
-                      <span>{hub.flag}</span>
-                      {t(hub.labelKey)}
-                    </Link>
-                  </DropdownMenuItem>
+              <DropdownMenuContent align="end" className="bg-[hsl(220_22%_12%)] border-[hsl(220_18%_20%)] w-52 max-h-80 overflow-y-auto">
+                {regionalHubGroups.map((group, idx) => (
+                  <div key={group.labelKey}>
+                    {idx > 0 && <DropdownMenuSeparator className="bg-[hsl(220_18%_20%)]" />}
+                    <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t(group.labelKey)}</div>
+                    {group.hubs.map((hub) => (
+                      <DropdownMenuItem key={hub.path} asChild>
+                        <Link to={hub.path} className="flex items-center gap-2 cursor-pointer text-[hsl(220_12%_70%)] hover:text-[hsl(220_15%_95%)]">
+                          <span>{hub.flag}</span>
+                          {t(hub.labelKey)}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </div>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
@@ -241,13 +301,27 @@ const Navbar = () => {
                 className="px-4 py-3 rounded-lg text-sm font-medium text-[hsl(220_12%_70%)] flex items-center gap-2">
                 <BarChart3 size={16} />{t("dashboard")}
               </Link>
-              {/* Regional Hubs - Mobile */}
-              <div className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t("regionalHubs")}</div>
-              {regionalHubs.map((hub) => (
-                <Link key={hub.path} to={hub.path} onClick={() => setIsOpen(false)}
-                  className="px-4 py-3 rounded-lg text-sm font-medium text-[hsl(220_12%_70%)] flex items-center gap-2">
-                  <span>{hub.flag}</span>{t(hub.labelKey)}
+              {/* Ecosystem - Mobile */}
+              <div className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t("ecosystem")}</div>
+              {ecosystemLinks.map((link) => (
+                <Link key={link.path} to={link.path} onClick={() => setIsOpen(false)}
+                  className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                    isActive(link.path) ? "bg-primary/10 text-primary" : "text-[hsl(220_12%_70%)] hover:text-[hsl(220_15%_95%)] hover:bg-[hsl(220_20%_15%)]"
+                  }`}>
+                  {link.label}
                 </Link>
+              ))}
+              {/* Regional Hubs - Mobile */}
+              {regionalHubGroups.map((group) => (
+                <div key={group.labelKey}>
+                  <div className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t(group.labelKey)}</div>
+                  {group.hubs.map((hub) => (
+                    <Link key={hub.path} to={hub.path} onClick={() => setIsOpen(false)}
+                      className="px-4 py-3 rounded-lg text-sm font-medium text-[hsl(220_12%_70%)] flex items-center gap-2">
+                      <span>{hub.flag}</span>{t(hub.labelKey)}
+                    </Link>
+                  ))}
+                </div>
               ))}
               {isAdmin && (
                 <Link to="/admin" onClick={() => setIsOpen(false)}
