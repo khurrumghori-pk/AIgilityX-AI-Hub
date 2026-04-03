@@ -160,6 +160,26 @@ const Navbar = () => {
               </Link>
             ))}
 
+            {/* Ecosystem Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className={`flex items-center gap-1 ${linkClass(ecosystemLinks.some(l => isActive(l.path)))}`}>
+                  <Layers size={14} />
+                  {t("ecosystem")}
+                  <ChevronDown size={14} />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="bg-[hsl(220_22%_12%)] border-[hsl(220_18%_20%)] w-48">
+                {ecosystemLinks.map((link) => (
+                  <DropdownMenuItem key={link.path} asChild>
+                    <Link to={link.path} className="flex items-center gap-2 cursor-pointer text-[hsl(220_12%_70%)] hover:text-[hsl(220_15%_95%)]">
+                      {link.label}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             {/* Partners Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
