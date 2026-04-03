@@ -301,13 +301,27 @@ const Navbar = () => {
                 className="px-4 py-3 rounded-lg text-sm font-medium text-[hsl(220_12%_70%)] flex items-center gap-2">
                 <BarChart3 size={16} />{t("dashboard")}
               </Link>
-              {/* Regional Hubs - Mobile */}
-              <div className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t("regionalHubs")}</div>
-              {regionalHubs.map((hub) => (
-                <Link key={hub.path} to={hub.path} onClick={() => setIsOpen(false)}
-                  className="px-4 py-3 rounded-lg text-sm font-medium text-[hsl(220_12%_70%)] flex items-center gap-2">
-                  <span>{hub.flag}</span>{t(hub.labelKey)}
+              {/* Ecosystem - Mobile */}
+              <div className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t("ecosystem")}</div>
+              {ecosystemLinks.map((link) => (
+                <Link key={link.path} to={link.path} onClick={() => setIsOpen(false)}
+                  className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                    isActive(link.path) ? "bg-primary/10 text-primary" : "text-[hsl(220_12%_70%)] hover:text-[hsl(220_15%_95%)] hover:bg-[hsl(220_20%_15%)]"
+                  }`}>
+                  {link.label}
                 </Link>
+              ))}
+              {/* Regional Hubs - Mobile */}
+              {regionalHubGroups.map((group) => (
+                <div key={group.labelKey}>
+                  <div className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t(group.labelKey)}</div>
+                  {group.hubs.map((hub) => (
+                    <Link key={hub.path} to={hub.path} onClick={() => setIsOpen(false)}
+                      className="px-4 py-3 rounded-lg text-sm font-medium text-[hsl(220_12%_70%)] flex items-center gap-2">
+                      <span>{hub.flag}</span>{t(hub.labelKey)}
+                    </Link>
+                  ))}
+                </div>
               ))}
               {isAdmin && (
                 <Link to="/admin" onClick={() => setIsOpen(false)}
