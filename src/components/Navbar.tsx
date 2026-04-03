@@ -80,10 +80,32 @@ export const useLanguage = () => useContext(LanguageContext);
 
 const languageLabels: Record<Language, string> = { en: "English", ar: "العربية", ur: "اردو" };
 
-const regionalHubs = [
-  { path: "/country/uae", labelKey: "uae", flag: "🇦🇪" },
-  { path: "/country/ksa", labelKey: "ksa", flag: "🇸🇦" },
-  { path: "/country/pakistan", labelKey: "pakistan", flag: "🇵🇰" },
+const regionalHubGroups = [
+  {
+    labelKey: "gcc",
+    hubs: [
+      { path: "/country/uae", labelKey: "uae", flag: "🇦🇪" },
+      { path: "/country/ksa", labelKey: "ksa", flag: "🇸🇦" },
+      { path: "/country/qatar", labelKey: "qatar", flag: "🇶🇦" },
+      { path: "/country/bahrain", labelKey: "bahrain", flag: "🇧🇭" },
+      { path: "/country/egypt", labelKey: "egypt", flag: "🇪🇬" },
+    ],
+  },
+  {
+    labelKey: "southAsia",
+    hubs: [
+      { path: "/country/pakistan", labelKey: "pakistan", flag: "🇵🇰" },
+      { path: "/country/india", labelKey: "india", flag: "🇮🇳" },
+      { path: "/country/bangladesh", labelKey: "bangladesh", flag: "🇧🇩" },
+    ],
+  },
+  {
+    labelKey: "europe",
+    hubs: [
+      { path: "/country/uk", labelKey: "uk", flag: "🇬🇧" },
+      { path: "/country/germany", labelKey: "germany", flag: "🇩🇪" },
+    ],
+  },
 ];
 
 const Navbar = () => {
