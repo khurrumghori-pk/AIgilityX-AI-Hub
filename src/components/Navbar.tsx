@@ -59,6 +59,9 @@ const translations: Record<Language, Record<string, string>> = {
     howItWorks: "کیسے کام کرتا ہے", contact: "رابطہ کریں", joinEcosystem: "پارٹنر بنیں",
     aiHub: "اے آئی ہب", adminPanel: "ایڈمن پینل", signOut: "سائن آؤٹ",
     regionalHubs: "علاقائی مراکز", uae: "یو اے ای", ksa: "سعودی عرب", pakistan: "پاکستان",
+    ecosystem: "ایکو سسٹم", egypt: "مصر", qatar: "قطر", bahrain: "بحرین",
+    india: "بھارت", bangladesh: "بنگلہ دیش", uk: "برطانیہ", germany: "جرمنی",
+    gcc: "خلیج اور مشرق وسطیٰ", southAsia: "جنوبی ایشیا", europe: "یورپ",
   },
 };
 
