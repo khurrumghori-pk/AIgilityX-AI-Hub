@@ -225,14 +225,20 @@ const Navbar = () => {
                   <ChevronDown size={14} className="ml-1" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="bg-[hsl(220_22%_12%)] border-[hsl(220_18%_20%)]">
-                {regionalHubs.map((hub) => (
-                  <DropdownMenuItem key={hub.path} asChild>
-                    <Link to={hub.path} className="flex items-center gap-2 cursor-pointer text-[hsl(220_12%_70%)] hover:text-[hsl(220_15%_95%)]">
-                      <span>{hub.flag}</span>
-                      {t(hub.labelKey)}
-                    </Link>
-                  </DropdownMenuItem>
+              <DropdownMenuContent align="end" className="bg-[hsl(220_22%_12%)] border-[hsl(220_18%_20%)] w-52 max-h-80 overflow-y-auto">
+                {regionalHubGroups.map((group, idx) => (
+                  <div key={group.labelKey}>
+                    {idx > 0 && <DropdownMenuSeparator className="bg-[hsl(220_18%_20%)]" />}
+                    <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t(group.labelKey)}</div>
+                    {group.hubs.map((hub) => (
+                      <DropdownMenuItem key={hub.path} asChild>
+                        <Link to={hub.path} className="flex items-center gap-2 cursor-pointer text-[hsl(220_12%_70%)] hover:text-[hsl(220_15%_95%)]">
+                          <span>{hub.flag}</span>
+                          {t(hub.labelKey)}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </div>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
