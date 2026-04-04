@@ -65,6 +65,8 @@ const translations: Record<Language, Record<string, string>> = {
     regionalHubs: "علاقائی مراکز", uae: "یو اے ای", ksa: "سعودی عرب", pakistan: "پاکستان",
     ecosystem: "ایکو سسٹم", egypt: "مصر", qatar: "قطر", bahrain: "بحرین",
     india: "بھارت", bangladesh: "بنگلہ دیش", uk: "برطانیہ", germany: "جرمنی",
+    turkey: "ترکی", oman: "عمان", kuwait: "کویت", srilanka: "سری لنکا",
+    france: "فرانس", netherlands: "نیدرلینڈز",
     gcc: "خلیج اور مشرق وسطیٰ", southAsia: "جنوبی ایشیا", europe: "یورپ",
   },
 };
