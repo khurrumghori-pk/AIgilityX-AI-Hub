@@ -95,6 +95,9 @@ const regionalHubGroups = [
       { path: "/country/qatar", labelKey: "qatar", flag: "🇶🇦" },
       { path: "/country/bahrain", labelKey: "bahrain", flag: "🇧🇭" },
       { path: "/country/egypt", labelKey: "egypt", flag: "🇪🇬" },
+      { path: "/country/oman", labelKey: "oman", flag: "🇴🇲" },
+      { path: "/country/kuwait", labelKey: "kuwait", flag: "🇰🇼" },
+      { path: "/country/turkey", labelKey: "turkey", flag: "🇹🇷" },
     ],
   },
   {
@@ -103,6 +106,7 @@ const regionalHubGroups = [
       { path: "/country/pakistan", labelKey: "pakistan", flag: "🇵🇰" },
       { path: "/country/india", labelKey: "india", flag: "🇮🇳" },
       { path: "/country/bangladesh", labelKey: "bangladesh", flag: "🇧🇩" },
+      { path: "/country/srilanka", labelKey: "srilanka", flag: "🇱🇰" },
     ],
   },
   {
@@ -110,6 +114,8 @@ const regionalHubGroups = [
     hubs: [
       { path: "/country/uk", labelKey: "uk", flag: "🇬🇧" },
       { path: "/country/germany", labelKey: "germany", flag: "🇩🇪" },
+      { path: "/country/france", labelKey: "france", flag: "🇫🇷" },
+      { path: "/country/netherlands", labelKey: "netherlands", flag: "🇳🇱" },
     ],
   },
 ];
