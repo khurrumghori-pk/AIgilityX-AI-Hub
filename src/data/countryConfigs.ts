@@ -1,0 +1,319 @@
+export interface CountryConfig {
+  name: string;
+  dbCountryName: string; // matches the country field in partners table
+  heroTitle: string;
+  heroSubtext: string;
+  heroCta: string;
+  accentColor: string;
+  accentGradient: string;
+  partners: { name: string; type: string }[];
+  highlights: string[];
+  localFocus: { title: string; description: string }[];
+}
+
+export const countryData: Record<string, CountryConfig> = {
+  uae: {
+    name: "UAE",
+    dbCountryName: "UAE",
+    heroTitle: "UAE Sovereign Intelligence Hub",
+    heroSubtext: "Powering the UAE's AI vision with G42 Cloud, Core42, and Dubai Future Foundation — sovereign compute, curated intelligence, and embedded governance.",
+    heroCta: "Join as UAE Founding Partner",
+    accentColor: "#00D2AA",
+    accentGradient: "linear-gradient(135deg, #00D2AA, #00B89C)",
+    partners: [
+      { name: "G42 / Core42", type: "Cloud & Compute" },
+      { name: "Dubai Future Foundation", type: "Government" },
+      { name: "e&", type: "Telecom" },
+    ],
+    highlights: ["UAE National AI Strategy 2031", "Minister of State for AI", "Smart Dubai Initiative", "DIFC Innovation Hub"],
+    localFocus: [
+      { title: "Enabling UAE Government AI", description: "Sovereign AI deployment aligned with UAE's national vision and data residency requirements." },
+      { title: "G42 Cloud Lab", description: "Access GPU-as-a-Service through Core42's sovereign cloud infrastructure in the UAE." },
+    ],
+  },
+  ksa: {
+    name: "KSA",
+    dbCountryName: "Saudi Arabia",
+    heroTitle: "KSA Vision 2030: Sovereign AI Hub",
+    heroSubtext: "Join STC and HUMAIN in transforming Saudi Arabia into a global AI powerhouse — aligned with Vision 2030 and SDAIA's National AI Strategy.",
+    heroCta: "Join Saudi AI Initiative",
+    accentColor: "#5B2D90",
+    accentGradient: "linear-gradient(135deg, #5B2D90, #7B4DB8)",
+    partners: [
+      { name: "STC", type: "Cloud & Telecom" },
+      { name: "HUMAIN", type: "AI Initiative" },
+      { name: "SDAIA", type: "Government" },
+    ],
+    highlights: ["Vision 2030 AI Strategy", "SDAIA Data & AI Authority", "HUMAIN AI Labs", "Riyadh AI Hub"],
+    localFocus: [
+      { title: "Saudi AI Governance", description: "Compliance with SDAIA regulations and Vision 2030 AI mandates." },
+      { title: "HUMAIN Labs", description: "Collaborative AI research and development through HUMAIN's innovation centers." },
+    ],
+  },
+  pakistan: {
+    name: "Pakistan",
+    dbCountryName: "Pakistan",
+    heroTitle: "Pakistan's Sovereign AI Initiative",
+    heroSubtext: "Accelerating Digital Pakistan with Jazz Cloud infrastructure and local AI talent — building sovereign AI capacity for South Asia's largest emerging market.",
+    heroCta: "Join Pakistan AI Hub",
+    accentColor: "#FF7900",
+    accentGradient: "linear-gradient(135deg, #FF7900, #FFA040)",
+    partners: [
+      { name: "Jazz", type: "Cloud & Telecom" },
+      { name: "AIgilityX", type: "Platform" },
+      { name: "MOITT", type: "Government" },
+    ],
+    highlights: ["Digital Pakistan Vision", "National AI Policy", "Jazz 5G AI Campus", "Emerging AI Talent Hub"],
+    localFocus: [
+      { title: "Pakistan Telecom AI", description: "AI-powered services deployed on Jazz's network infrastructure across Pakistan." },
+      { title: "Jazz 5G Campus", description: "Next-generation 5G-enabled AI workloads for enterprise and government use cases." },
+    ],
+  },
+  egypt: {
+    name: "Egypt",
+    dbCountryName: "Egypt",
+    heroTitle: "Egypt's Digital Transformation Hub",
+    heroSubtext: "Driving Egypt's AI strategy through sovereign compute and local partnerships — powering the largest economy in North Africa.",
+    heroCta: "Join Egypt AI Hub",
+    accentColor: "#C8102E",
+    accentGradient: "linear-gradient(135deg, #C8102E, #E63950)",
+    partners: [
+      { name: "Telecom Egypt", type: "Cloud & Telecom" },
+      { name: "ITIDA", type: "Government" },
+      { name: "MCIT Egypt", type: "Government" },
+    ],
+    highlights: ["Egypt Vision 2030", "National AI Strategy", "Smart Village Innovation", "Africa's Tech Gateway"],
+    localFocus: [
+      { title: "Egyptian AI Governance", description: "Policy frameworks aligned with Egypt's national data protection and AI ethics strategy." },
+      { title: "North Africa AI Campus", description: "Regional hub for AI research and deployment serving the MENA and African markets." },
+    ],
+  },
+  qatar: {
+    name: "Qatar",
+    dbCountryName: "Qatar",
+    heroTitle: "Qatar National AI & Innovation Hub",
+    heroSubtext: "Supporting Qatar's National Vision 2030 with sovereign AI infrastructure, smart city initiatives, and world-class research institutions.",
+    heroCta: "Join Qatar AI Initiative",
+    accentColor: "#8B1A4A",
+    accentGradient: "linear-gradient(135deg, #8B1A4A, #B22D6A)",
+    partners: [
+      { name: "Ooredoo", type: "Cloud & Telecom" },
+      { name: "Qatar Foundation", type: "Research & Education" },
+      { name: "TASMU", type: "Government" },
+    ],
+    highlights: ["Qatar National Vision 2030", "TASMU Smart Qatar", "Qatar Science & Technology Park", "FIFA Legacy AI"],
+    localFocus: [
+      { title: "Smart Qatar AI", description: "AI solutions powering Qatar's TASMU smart city and digital government transformation." },
+      { title: "Qatar Research Labs", description: "Advanced AI research through Qatar Foundation's innovation ecosystem." },
+    ],
+  },
+  bahrain: {
+    name: "Bahrain",
+    dbCountryName: "Bahrain",
+    heroTitle: "Bahrain FinTech & AI Hub",
+    heroSubtext: "Bahrain's AI ecosystem bridges fintech innovation with sovereign infrastructure — leading the Gulf's digital financial revolution.",
+    heroCta: "Join Bahrain AI Hub",
+    accentColor: "#CE1126",
+    accentGradient: "linear-gradient(135deg, #CE1126, #E8394D)",
+    partners: [
+      { name: "Batelco", type: "Cloud & Telecom" },
+      { name: "Bahrain EDB", type: "Government" },
+      { name: "Central Bank of Bahrain", type: "Regulator" },
+    ],
+    highlights: ["Bahrain Economic Vision 2030", "FinTech Bay", "Team Bahrain AI", "Cloud First Policy"],
+    localFocus: [
+      { title: "FinTech AI Innovation", description: "AI-powered financial services and regulatory technology for the Gulf's fintech capital." },
+      { title: "Cloud First Strategy", description: "Government cloud adoption and sovereign data infrastructure for Bahrain." },
+    ],
+  },
+  india: {
+    name: "India",
+    dbCountryName: "India",
+    heroTitle: "India's AI Innovation Powerhouse",
+    heroSubtext: "Harnessing India's world-class talent and Digital India infrastructure to build scalable AI solutions for a billion-person economy.",
+    heroCta: "Join India AI Hub",
+    accentColor: "#FF9933",
+    accentGradient: "linear-gradient(135deg, #FF9933, #138808)",
+    partners: [
+      { name: "Reliance Jio", type: "Cloud & Telecom" },
+      { name: "MeitY", type: "Government" },
+      { name: "NASSCOM", type: "Industry Body" },
+    ],
+    highlights: ["Digital India Mission", "National AI Strategy", "IndiaAI Innovation Hub", "Startup India AI"],
+    localFocus: [
+      { title: "IndiaAI Mission", description: "Government-backed AI compute and innovation platform serving India's diverse sectors." },
+      { title: "AI Talent Hub", description: "Leveraging India's vast engineering talent pool for global AI solution development." },
+    ],
+  },
+  bangladesh: {
+    name: "Bangladesh",
+    dbCountryName: "Bangladesh",
+    heroTitle: "Bangladesh Digital Intelligence Hub",
+    heroSubtext: "Smart Bangladesh 2041 vision powered by AI — transforming garments, agriculture, and financial inclusion through intelligent automation.",
+    heroCta: "Join Bangladesh AI Hub",
+    accentColor: "#006A4E",
+    accentGradient: "linear-gradient(135deg, #006A4E, #00A676)",
+    partners: [
+      { name: "Grameenphone", type: "Cloud & Telecom" },
+      { name: "ICT Division", type: "Government" },
+      { name: "a2i Programme", type: "Innovation" },
+    ],
+    highlights: ["Smart Bangladesh 2041", "Digital Bangladesh", "Hi-Tech Park Authority", "a2i Innovation"],
+    localFocus: [
+      { title: "Smart Bangladesh AI", description: "AI solutions for government services, agriculture, and financial inclusion." },
+      { title: "Digital Innovation Lab", description: "Collaborative AI research centers in Bangladesh Hi-Tech Parks." },
+    ],
+  },
+  uk: {
+    name: "UK",
+    dbCountryName: "UK",
+    heroTitle: "UK AI Safety & Innovation Hub",
+    heroSubtext: "The UK leads global AI safety and governance — partnering with world-class research institutions and the AI Safety Institute.",
+    heroCta: "Join UK AI Hub",
+    accentColor: "#003078",
+    accentGradient: "linear-gradient(135deg, #003078, #1D70B8)",
+    partners: [
+      { name: "BT Group", type: "Cloud & Telecom" },
+      { name: "AI Safety Institute", type: "Government" },
+      { name: "Alan Turing Institute", type: "Research" },
+    ],
+    highlights: ["AI Safety Institute", "UK National AI Strategy", "Bletchley Declaration", "London AI Cluster"],
+    localFocus: [
+      { title: "AI Safety Leadership", description: "Global AI safety standards and responsible AI frameworks from the UK AI Safety Institute." },
+      { title: "UK Research Network", description: "Collaboration with world-leading universities and the Alan Turing Institute." },
+    ],
+  },
+  germany: {
+    name: "Germany",
+    dbCountryName: "Germany",
+    heroTitle: "Germany Industrial AI & Sovereignty Hub",
+    heroSubtext: "German engineering meets AI — powering Industry 4.0, automotive AI, and sovereign European cloud infrastructure.",
+    heroCta: "Join Germany AI Hub",
+    accentColor: "#DD0000",
+    accentGradient: "linear-gradient(135deg, #DD0000, #FFCC00)",
+    partners: [
+      { name: "Deutsche Telekom", type: "Cloud & Telecom" },
+      { name: "DFKI", type: "Research" },
+      { name: "BMWi", type: "Government" },
+    ],
+    highlights: ["AI Made in Germany", "Gaia-X Cloud", "Industry 4.0", "DFKI Research Labs"],
+    localFocus: [
+      { title: "Industry 4.0 AI", description: "AI-powered manufacturing, logistics, and automotive solutions for German industry." },
+      { title: "Gaia-X Sovereign Cloud", description: "European sovereign cloud federation for trusted AI workloads." },
+    ],
+  },
+  turkey: {
+    name: "Turkey",
+    dbCountryName: "Turkey",
+    heroTitle: "Türkiye AI & Technology Hub",
+    heroSubtext: "Türkiye bridges Europe and Asia with sovereign AI infrastructure, defense tech innovation, and a rapidly growing startup ecosystem.",
+    heroCta: "Join Türkiye AI Hub",
+    accentColor: "#E30A17",
+    accentGradient: "linear-gradient(135deg, #E30A17, #FF4D58)",
+    partners: [
+      { name: "Turkcell", type: "Cloud & Telecom" },
+      { name: "TÜBİTAK", type: "Research" },
+      { name: "Digital Transformation Office", type: "Government" },
+    ],
+    highlights: ["National AI Strategy 2025", "TÜBİTAK AI Labs", "Teknofest Innovation", "Istanbul Tech Hub"],
+    localFocus: [
+      { title: "Türkiye National AI", description: "Sovereign AI deployment aligned with Türkiye's national technology independence strategy." },
+      { title: "Eurasia Tech Bridge", description: "Connecting European and Asian AI markets through Türkiye's strategic position." },
+    ],
+  },
+  oman: {
+    name: "Oman",
+    dbCountryName: "Oman",
+    heroTitle: "Oman Digital Economy AI Hub",
+    heroSubtext: "Supporting Oman Vision 2040 with AI-driven economic diversification, smart logistics, and sovereign digital infrastructure.",
+    heroCta: "Join Oman AI Hub",
+    accentColor: "#008000",
+    accentGradient: "linear-gradient(135deg, #008000, #00B34A)",
+    partners: [
+      { name: "Omantel", type: "Cloud & Telecom" },
+      { name: "ITA Oman", type: "Government" },
+      { name: "Oman Technology Fund", type: "Investment" },
+    ],
+    highlights: ["Oman Vision 2040", "ITA Digital Strategy", "Duqm Smart Port", "Oman Tech Fund"],
+    localFocus: [
+      { title: "Smart Logistics AI", description: "AI-powered port and logistics management for Oman's strategic maritime position." },
+      { title: "Digital Oman Initiative", description: "Government digital transformation powered by AI and sovereign cloud." },
+    ],
+  },
+  kuwait: {
+    name: "Kuwait",
+    dbCountryName: "Kuwait",
+    heroTitle: "Kuwait New Vision AI Hub",
+    heroSubtext: "Kuwait's Vision 2035 positions AI at the center of economic diversification — from oil to intelligence-driven industries.",
+    heroCta: "Join Kuwait AI Hub",
+    accentColor: "#007A33",
+    accentGradient: "linear-gradient(135deg, #007A33, #00A94F)",
+    partners: [
+      { name: "Zain Kuwait", type: "Cloud & Telecom" },
+      { name: "CAIT", type: "Government" },
+      { name: "Kuwait Foundation for Science", type: "Research" },
+    ],
+    highlights: ["Kuwait Vision 2035", "CAIT Digital Strategy", "Kuwait Tech Hub", "Economic Diversification AI"],
+    localFocus: [
+      { title: "Kuwait Digital Government", description: "AI-powered e-government services and citizen experience optimization." },
+      { title: "Energy Sector AI", description: "Intelligent automation for Kuwait's oil & gas and renewable energy sectors." },
+    ],
+  },
+  srilanka: {
+    name: "Sri Lanka",
+    dbCountryName: "Sri Lanka",
+    heroTitle: "Sri Lanka AI Innovation Hub",
+    heroSubtext: "Sri Lanka's growing tech talent and strategic Indian Ocean position make it an ideal hub for AI innovation in South Asia.",
+    heroCta: "Join Sri Lanka AI Hub",
+    accentColor: "#8D153A",
+    accentGradient: "linear-gradient(135deg, #8D153A, #B82E5C)",
+    partners: [
+      { name: "Dialog Axiata", type: "Cloud & Telecom" },
+      { name: "ICTA Sri Lanka", type: "Government" },
+      { name: "University of Moratuwa", type: "Research" },
+    ],
+    highlights: ["Digital Sri Lanka", "ICTA Innovation", "BPO & Tech Talent", "Indian Ocean Tech Hub"],
+    localFocus: [
+      { title: "Sri Lanka Tech Talent", description: "Leveraging Sri Lanka's high-quality engineering talent for AI development." },
+      { title: "Digital Government AI", description: "AI-driven government modernization and citizen services transformation." },
+    ],
+  },
+  france: {
+    name: "France",
+    dbCountryName: "France",
+    heroTitle: "France AI & Sovereignty Hub",
+    heroSubtext: "France leads European AI with Mistral AI, sovereign cloud infrastructure, and President Macron's €2B AI investment strategy.",
+    heroCta: "Join France AI Hub",
+    accentColor: "#002395",
+    accentGradient: "linear-gradient(135deg, #002395, #0055A4)",
+    partners: [
+      { name: "Orange", type: "Cloud & Telecom" },
+      { name: "Mistral AI", type: "AI Research" },
+      { name: "INRIA", type: "Research" },
+    ],
+    highlights: ["France AI Strategy", "Mistral AI Labs", "Gaia-X France", "Station F AI"],
+    localFocus: [
+      { title: "French AI Sovereignty", description: "Sovereign AI models and European data protection through France's AI leadership." },
+      { title: "Station F AI Ecosystem", description: "World's largest startup campus fostering AI innovation and entrepreneurship." },
+    ],
+  },
+  netherlands: {
+    name: "Netherlands",
+    dbCountryName: "Netherlands",
+    heroTitle: "Netherlands AI Ethics & Innovation Hub",
+    heroSubtext: "The Netherlands combines AI ethics leadership with world-class research — driving responsible AI innovation across Europe.",
+    heroCta: "Join Netherlands AI Hub",
+    accentColor: "#FF6600",
+    accentGradient: "linear-gradient(135deg, #FF6600, #FF8C40)",
+    partners: [
+      { name: "KPN", type: "Cloud & Telecom" },
+      { name: "TNO", type: "Research" },
+      { name: "Netherlands AI Coalition", type: "Government" },
+    ],
+    highlights: ["NL AI Coalition (NLAIC)", "Amsterdam AI Hub", "Responsible AI", "EU AI Act Leadership"],
+    localFocus: [
+      { title: "Responsible AI Europe", description: "Leading EU AI Act implementation and ethical AI standards across Europe." },
+      { title: "Amsterdam AI Cluster", description: "Europe's AI research hub with top universities and global tech headquarters." },
+    ],
+  },
+};

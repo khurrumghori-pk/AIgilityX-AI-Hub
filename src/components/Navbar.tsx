@@ -39,6 +39,8 @@ const translations: Record<Language, Record<string, string>> = {
     regionalHubs: "Regional Hubs", uae: "UAE", ksa: "KSA", pakistan: "Pakistan",
     ecosystem: "Ecosystem", egypt: "Egypt", qatar: "Qatar", bahrain: "Bahrain",
     india: "India", bangladesh: "Bangladesh", uk: "UK", germany: "Germany",
+    turkey: "Turkey", oman: "Oman", kuwait: "Kuwait", srilanka: "Sri Lanka",
+    france: "France", netherlands: "Netherlands",
     gcc: "GCC & MENA", southAsia: "South Asia", europe: "Europe",
   },
   ar: {
@@ -50,6 +52,8 @@ const translations: Record<Language, Record<string, string>> = {
     regionalHubs: "المراكز الإقليمية", uae: "الإمارات", ksa: "السعودية", pakistan: "باكستان",
     ecosystem: "النظام البيئي", egypt: "مصر", qatar: "قطر", bahrain: "البحرين",
     india: "الهند", bangladesh: "بنغلاديش", uk: "بريطانيا", germany: "ألمانيا",
+    turkey: "تركيا", oman: "عُمان", kuwait: "الكويت", srilanka: "سريلانكا",
+    france: "فرنسا", netherlands: "هولندا",
     gcc: "الخليج والشرق الأوسط", southAsia: "جنوب آسيا", europe: "أوروبا",
   },
   ur: {
@@ -61,6 +65,8 @@ const translations: Record<Language, Record<string, string>> = {
     regionalHubs: "علاقائی مراکز", uae: "یو اے ای", ksa: "سعودی عرب", pakistan: "پاکستان",
     ecosystem: "ایکو سسٹم", egypt: "مصر", qatar: "قطر", bahrain: "بحرین",
     india: "بھارت", bangladesh: "بنگلہ دیش", uk: "برطانیہ", germany: "جرمنی",
+    turkey: "ترکی", oman: "عمان", kuwait: "کویت", srilanka: "سری لنکا",
+    france: "فرانس", netherlands: "نیدرلینڈز",
     gcc: "خلیج اور مشرق وسطیٰ", southAsia: "جنوبی ایشیا", europe: "یورپ",
   },
 };
@@ -89,6 +95,9 @@ const regionalHubGroups = [
       { path: "/country/qatar", labelKey: "qatar", flag: "🇶🇦" },
       { path: "/country/bahrain", labelKey: "bahrain", flag: "🇧🇭" },
       { path: "/country/egypt", labelKey: "egypt", flag: "🇪🇬" },
+      { path: "/country/oman", labelKey: "oman", flag: "🇴🇲" },
+      { path: "/country/kuwait", labelKey: "kuwait", flag: "🇰🇼" },
+      { path: "/country/turkey", labelKey: "turkey", flag: "🇹🇷" },
     ],
   },
   {
@@ -97,6 +106,7 @@ const regionalHubGroups = [
       { path: "/country/pakistan", labelKey: "pakistan", flag: "🇵🇰" },
       { path: "/country/india", labelKey: "india", flag: "🇮🇳" },
       { path: "/country/bangladesh", labelKey: "bangladesh", flag: "🇧🇩" },
+      { path: "/country/srilanka", labelKey: "srilanka", flag: "🇱🇰" },
     ],
   },
   {
@@ -104,6 +114,8 @@ const regionalHubGroups = [
     hubs: [
       { path: "/country/uk", labelKey: "uk", flag: "🇬🇧" },
       { path: "/country/germany", labelKey: "germany", flag: "🇩🇪" },
+      { path: "/country/france", labelKey: "france", flag: "🇫🇷" },
+      { path: "/country/netherlands", labelKey: "netherlands", flag: "🇳🇱" },
     ],
   },
 ];
