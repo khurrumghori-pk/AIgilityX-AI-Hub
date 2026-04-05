@@ -118,6 +118,13 @@ const regionalHubGroups = [
       { path: "/country/netherlands", labelKey: "netherlands", flag: "🇳🇱" },
     ],
   },
+  {
+    labelKey: "americas",
+    hubs: [
+      { path: "/country/usa", labelKey: "usa", flag: "🇺🇸" },
+      { path: "/country/canada", labelKey: "canada", flag: "🇨🇦" },
+    ],
+  },
 ];
 
 const Navbar = () => {

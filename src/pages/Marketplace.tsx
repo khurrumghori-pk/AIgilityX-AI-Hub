@@ -204,6 +204,7 @@ const Marketplace = () => {
                   <SelectItem value="South Asia">South Asia</SelectItem>
                   <SelectItem value="Europe">Europe</SelectItem>
                   <SelectItem value="North America">North America</SelectItem>
+                  <SelectItem value="Americas">Americas</SelectItem>
                   <SelectItem value="Africa">Africa</SelectItem>
                 </SelectContent>
               </Select>
@@ -229,6 +230,8 @@ const Marketplace = () => {
                   <SelectItem value="Germany">Germany</SelectItem>
                   <SelectItem value="France">France</SelectItem>
                   <SelectItem value="Netherlands">Netherlands</SelectItem>
+                  <SelectItem value="USA">USA</SelectItem>
+                  <SelectItem value="Canada">Canada</SelectItem>
                 </SelectContent>
               </Select>
             </div>

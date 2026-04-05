@@ -316,4 +316,42 @@ export const countryData: Record<string, CountryConfig> = {
       { title: "Amsterdam AI Cluster", description: "Europe's AI research hub with top universities and global tech headquarters." },
     ],
   },
+  usa: {
+    name: "USA",
+    dbCountryName: "USA",
+    heroTitle: "USA AI Innovation & Enterprise Hub",
+    heroSubtext: "The United States leads global AI research, enterprise adoption, and venture investment — home to the world's largest AI ecosystem.",
+    heroCta: "Join USA AI Hub",
+    accentColor: "#3C3B6E",
+    accentGradient: "linear-gradient(135deg, #3C3B6E, #B22234)",
+    partners: [
+      { name: "AWS", type: "Cloud & Compute" },
+      { name: "Microsoft Azure", type: "Cloud & AI" },
+      { name: "Google Cloud", type: "Cloud & AI" },
+    ],
+    highlights: ["National AI Initiative", "NIST AI Framework", "Silicon Valley Ecosystem", "Federal AI Strategy"],
+    localFocus: [
+      { title: "Enterprise AI at Scale", description: "World-leading cloud infrastructure and enterprise AI adoption across every industry vertical." },
+      { title: "AI Safety & Standards", description: "NIST AI Risk Management Framework and federal AI governance leadership." },
+    ],
+  },
+  canada: {
+    name: "Canada",
+    dbCountryName: "Canada",
+    heroTitle: "Canada AI Research & Ethics Hub",
+    heroSubtext: "Canada pioneered modern AI research — home to MILA, Vector Institute, and a thriving responsible AI ecosystem from Toronto to Montreal.",
+    heroCta: "Join Canada AI Hub",
+    accentColor: "#FF0000",
+    accentGradient: "linear-gradient(135deg, #FF0000, #C70039)",
+    partners: [
+      { name: "TELUS", type: "Cloud & Telecom" },
+      { name: "MILA", type: "Research" },
+      { name: "Vector Institute", type: "Research" },
+    ],
+    highlights: ["Pan-Canadian AI Strategy", "MILA Research Lab", "Vector Institute", "Toronto AI Corridor"],
+    localFocus: [
+      { title: "AI Research Leadership", description: "World-renowned AI research institutions including MILA and the Vector Institute." },
+      { title: "Responsible AI Policy", description: "Canada's leadership in ethical AI frameworks and inclusive AI development." },
+    ],
+  },
 };

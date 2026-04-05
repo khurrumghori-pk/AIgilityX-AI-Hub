@@ -21,7 +21,7 @@ const categories = [
 
 const industries = ["Telecommunications", "Government", "Finance", "Healthcare", "Manufacturing", "Education", "Energy", "Retail", "Multiple"];
 const regions = ["GCC & MENA", "South Asia", "Europe", "North America", "Africa", "Asia Pacific"];
-const countries = ["UAE", "Saudi Arabia", "Qatar", "Kuwait", "Bahrain", "Oman", "Pakistan", "India", "Germany", "UK", "USA", "Egypt", "Turkey"];
+const countries = ["UAE", "Saudi Arabia", "Qatar", "Kuwait", "Bahrain", "Oman", "Pakistan", "India", "Germany", "UK", "USA", "Canada", "Egypt", "Turkey", "Bangladesh", "Sri Lanka", "France", "Netherlands"];
 
 const PartnerRegistration = () => {
   const { toast } = useToast();
