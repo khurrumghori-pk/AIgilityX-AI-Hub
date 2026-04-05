@@ -61,10 +61,11 @@ interface Partner {
 }
 
 const Marketplace = () => {
+  const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedIndustry, setSelectedIndustry] = useState("all");
   const [selectedRegion, setSelectedRegion] = useState("all");
-  const [selectedCountry, setSelectedCountry] = useState("all");
+  const [selectedCountry, setSelectedCountry] = useState(searchParams.get("country") || "all");
   const [activeCategory, setActiveCategory] = useState("all");
   const [partners, setPartners] = useState<Partner[]>([]);
   const [loading, setLoading] = useState(true);
