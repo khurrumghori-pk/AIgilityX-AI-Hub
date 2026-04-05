@@ -40,8 +40,8 @@ const translations: Record<Language, Record<string, string>> = {
     ecosystem: "Ecosystem", egypt: "Egypt", qatar: "Qatar", bahrain: "Bahrain",
     india: "India", bangladesh: "Bangladesh", uk: "UK", germany: "Germany",
     turkey: "Turkey", oman: "Oman", kuwait: "Kuwait", srilanka: "Sri Lanka",
-    france: "France", netherlands: "Netherlands",
-    gcc: "GCC & MENA", southAsia: "South Asia", europe: "Europe",
+    france: "France", netherlands: "Netherlands", usa: "USA", canada: "Canada",
+    gcc: "GCC & MENA", southAsia: "South Asia", europe: "Europe", americas: "Americas",
   },
   ar: {
     home: "الرئيسية", marketplace: "السوق", intelligence: "الذكاء",
