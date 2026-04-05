@@ -66,8 +66,8 @@ const translations: Record<Language, Record<string, string>> = {
     ecosystem: "ایکو سسٹم", egypt: "مصر", qatar: "قطر", bahrain: "بحرین",
     india: "بھارت", bangladesh: "بنگلہ دیش", uk: "برطانیہ", germany: "جرمنی",
     turkey: "ترکی", oman: "عمان", kuwait: "کویت", srilanka: "سری لنکا",
-    france: "فرانس", netherlands: "نیدرلینڈز",
-    gcc: "خلیج اور مشرق وسطیٰ", southAsia: "جنوبی ایشیا", europe: "یورپ",
+    france: "فرانس", netherlands: "نیدرلینڈز", usa: "امریکہ", canada: "کینیڈا",
+    gcc: "خلیج اور مشرق وسطیٰ", southAsia: "جنوبی ایشیا", europe: "یورپ", americas: "امریکاز",
   },
 };
 
