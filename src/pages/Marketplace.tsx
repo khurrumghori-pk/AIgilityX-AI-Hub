@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -60,10 +61,11 @@ interface Partner {
 }
 
 const Marketplace = () => {
+  const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedIndustry, setSelectedIndustry] = useState("all");
   const [selectedRegion, setSelectedRegion] = useState("all");
-  const [selectedCountry, setSelectedCountry] = useState("all");
+  const [selectedCountry, setSelectedCountry] = useState(searchParams.get("country") || "all");
   const [activeCategory, setActiveCategory] = useState("all");
   const [partners, setPartners] = useState<Partner[]>([]);
   const [loading, setLoading] = useState(true);
@@ -214,12 +216,19 @@ const Marketplace = () => {
                   <SelectItem value="UAE">UAE</SelectItem>
                   <SelectItem value="Saudi Arabia">Saudi Arabia</SelectItem>
                   <SelectItem value="Qatar">Qatar</SelectItem>
+                  <SelectItem value="Bahrain">Bahrain</SelectItem>
                   <SelectItem value="Kuwait">Kuwait</SelectItem>
+                  <SelectItem value="Oman">Oman</SelectItem>
+                  <SelectItem value="Egypt">Egypt</SelectItem>
+                  <SelectItem value="Turkey">Turkey</SelectItem>
                   <SelectItem value="Pakistan">Pakistan</SelectItem>
                   <SelectItem value="India">India</SelectItem>
-                  <SelectItem value="Germany">Germany</SelectItem>
+                  <SelectItem value="Bangladesh">Bangladesh</SelectItem>
+                  <SelectItem value="Sri Lanka">Sri Lanka</SelectItem>
                   <SelectItem value="UK">UK</SelectItem>
-                  <SelectItem value="USA">USA</SelectItem>
+                  <SelectItem value="Germany">Germany</SelectItem>
+                  <SelectItem value="France">France</SelectItem>
+                  <SelectItem value="Netherlands">Netherlands</SelectItem>
                 </SelectContent>
               </Select>
             </div>
