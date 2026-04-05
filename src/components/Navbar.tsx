@@ -40,8 +40,8 @@ const translations: Record<Language, Record<string, string>> = {
     ecosystem: "Ecosystem", egypt: "Egypt", qatar: "Qatar", bahrain: "Bahrain",
     india: "India", bangladesh: "Bangladesh", uk: "UK", germany: "Germany",
     turkey: "Turkey", oman: "Oman", kuwait: "Kuwait", srilanka: "Sri Lanka",
-    france: "France", netherlands: "Netherlands",
-    gcc: "GCC & MENA", southAsia: "South Asia", europe: "Europe",
+    france: "France", netherlands: "Netherlands", usa: "USA", canada: "Canada",
+    gcc: "GCC & MENA", southAsia: "South Asia", europe: "Europe", americas: "Americas",
   },
   ar: {
     home: "الرئيسية", marketplace: "السوق", intelligence: "الذكاء",
@@ -53,8 +53,8 @@ const translations: Record<Language, Record<string, string>> = {
     ecosystem: "النظام البيئي", egypt: "مصر", qatar: "قطر", bahrain: "البحرين",
     india: "الهند", bangladesh: "بنغلاديش", uk: "بريطانيا", germany: "ألمانيا",
     turkey: "تركيا", oman: "عُمان", kuwait: "الكويت", srilanka: "سريلانكا",
-    france: "فرنسا", netherlands: "هولندا",
-    gcc: "الخليج والشرق الأوسط", southAsia: "جنوب آسيا", europe: "أوروبا",
+    france: "فرنسا", netherlands: "هولندا", usa: "أمريكا", canada: "كندا",
+    gcc: "الخليج والشرق الأوسط", southAsia: "جنوب آسيا", europe: "أوروبا", americas: "الأمريكتان",
   },
   ur: {
     home: "ہوم", marketplace: "مارکیٹ", intelligence: "انٹیلیجنس",
@@ -66,8 +66,8 @@ const translations: Record<Language, Record<string, string>> = {
     ecosystem: "ایکو سسٹم", egypt: "مصر", qatar: "قطر", bahrain: "بحرین",
     india: "بھارت", bangladesh: "بنگلہ دیش", uk: "برطانیہ", germany: "جرمنی",
     turkey: "ترکی", oman: "عمان", kuwait: "کویت", srilanka: "سری لنکا",
-    france: "فرانس", netherlands: "نیدرلینڈز",
-    gcc: "خلیج اور مشرق وسطیٰ", southAsia: "جنوبی ایشیا", europe: "یورپ",
+    france: "فرانس", netherlands: "نیدرلینڈز", usa: "امریکہ", canada: "کینیڈا",
+    gcc: "خلیج اور مشرق وسطیٰ", southAsia: "جنوبی ایشیا", europe: "یورپ", americas: "امریکاز",
   },
 };
 
@@ -116,6 +116,13 @@ const regionalHubGroups = [
       { path: "/country/germany", labelKey: "germany", flag: "🇩🇪" },
       { path: "/country/france", labelKey: "france", flag: "🇫🇷" },
       { path: "/country/netherlands", labelKey: "netherlands", flag: "🇳🇱" },
+    ],
+  },
+  {
+    labelKey: "americas",
+    hubs: [
+      { path: "/country/usa", labelKey: "usa", flag: "🇺🇸" },
+      { path: "/country/canada", labelKey: "canada", flag: "🇨🇦" },
     ],
   },
 ];
