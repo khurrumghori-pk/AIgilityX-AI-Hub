@@ -216,12 +216,19 @@ const Marketplace = () => {
                   <SelectItem value="UAE">UAE</SelectItem>
                   <SelectItem value="Saudi Arabia">Saudi Arabia</SelectItem>
                   <SelectItem value="Qatar">Qatar</SelectItem>
+                  <SelectItem value="Bahrain">Bahrain</SelectItem>
                   <SelectItem value="Kuwait">Kuwait</SelectItem>
+                  <SelectItem value="Oman">Oman</SelectItem>
+                  <SelectItem value="Egypt">Egypt</SelectItem>
+                  <SelectItem value="Turkey">Turkey</SelectItem>
                   <SelectItem value="Pakistan">Pakistan</SelectItem>
                   <SelectItem value="India">India</SelectItem>
-                  <SelectItem value="Germany">Germany</SelectItem>
+                  <SelectItem value="Bangladesh">Bangladesh</SelectItem>
+                  <SelectItem value="Sri Lanka">Sri Lanka</SelectItem>
                   <SelectItem value="UK">UK</SelectItem>
-                  <SelectItem value="USA">USA</SelectItem>
+                  <SelectItem value="Germany">Germany</SelectItem>
+                  <SelectItem value="France">France</SelectItem>
+                  <SelectItem value="Netherlands">Netherlands</SelectItem>
                 </SelectContent>
               </Select>
             </div>

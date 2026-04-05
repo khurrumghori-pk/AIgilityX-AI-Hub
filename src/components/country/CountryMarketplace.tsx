@@ -200,7 +200,7 @@ const CountryMarketplace = ({ countryName, dbCountryName, accentColor, accentGra
 
         {/* Link to full marketplace */}
         <div className="text-center mt-12">
-          <Link to="/marketplace">
+          <Link to={`/marketplace?country=${encodeURIComponent(dbCountryName)}`}>
             <Button variant="outline" size="lg">
               View Full Global Marketplace <ArrowRight className="ml-2" size={16} />
             </Button>
