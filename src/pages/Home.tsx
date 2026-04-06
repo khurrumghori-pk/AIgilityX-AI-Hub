@@ -26,7 +26,17 @@ import {
   Radio,
   Landmark,
   Factory,
-  Star
+  Star,
+  MessageSquareText,
+  Tags,
+  Languages,
+  ShieldCheck,
+  BarChart3,
+  Handshake,
+  Brain,
+  FileText,
+  Video,
+  AudioLines
 } from "lucide-react";
 
 const Home = () => {
@@ -227,7 +237,194 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Problem / Solution Section - Dark */}
+      {/* Market Highlights Section - Dark */}
+      <section className="section-dark py-24 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto">
+          <ScrollSection animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+              <Badge className="badge-glow">
+                <TrendingUp className="w-4 h-4 mr-2" />
+                Market Intelligence
+              </Badge>
+              <h2 className="text-4xl sm:text-5xl font-display font-bold">
+                Global AI <span className="gradient-text">Market Highlights</span>
+              </h2>
+              <p className="text-lg text-[hsl(220_12%_65%)]">
+                Real-time insights powered by our intelligence engine analyzing data from trusted sources.
+              </p>
+            </div>
+          </ScrollSection>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { value: "45.2%", label: "AI Market Growth", desc: "Annual growth rate of AI solutions across GCC & South Asia (2025)" },
+              { value: "83%", label: "Enterprise AI Adoption", desc: "Enterprises actively implementing or piloting AI solutions globally" },
+              { value: "$15.8B", label: "Government AI Investment", desc: "Total government AI investment allocated across sovereign initiatives" },
+            ].map((item, index) => (
+              <ScrollSection key={index} animation="fade-up" delay={index * 150}>
+                <Card className="card-themed p-8 text-center hover-lift group">
+                  <div className="text-5xl font-display font-bold gradient-text mb-3 group-hover:scale-110 transition-transform">
+                    {item.value}
+                  </div>
+                  <h3 className="text-lg font-semibold text-[hsl(220_15%_95%)] mb-2">{item.label}</h3>
+                  <p className="text-sm text-[hsl(220_12%_60%)] leading-relaxed">{item.desc}</p>
+                </Card>
+              </ScrollSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Success Stories Section - Light */}
+      <section className="section-light py-24 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto">
+          <ScrollSection animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+              <Badge className="bg-accent/10 text-accent border-accent/20">Success Stories</Badge>
+              <h2 className="text-4xl sm:text-5xl font-display font-bold">
+                Proven <span className="gradient-text">Impact</span>
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Real-world AI deployments delivering measurable outcomes for governments and enterprises.
+              </p>
+            </div>
+          </ScrollSection>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              {
+                icon: Brain,
+                title: "AI Companion for Digital Services",
+                description: "An intelligent conversational assistant embedded within government digital platforms to enhance user engagement, simplify interactions, and provide personalized recommendations.",
+                impacts: ["45% reduction in service resolution time", "30% improvement in user satisfaction", "60% decrease in support ticket volume"],
+              },
+              {
+                icon: FileText,
+                title: "AI-Powered Document Management",
+                description: "An advanced secure platform for government agencies leveraging LLMs to automate document creation, editing, collaboration, and lifecycle management.",
+                impacts: ["65% reduction in document processing time", "80% accuracy improvement in content generation", "45% cost savings in document management"],
+              },
+              {
+                icon: Video,
+                title: "Advanced Video Analytics Suite",
+                description: "Agentic AI solutions combining real-time video analytics, edge processing, and cloud orchestration for mission-critical safety and security challenges.",
+                impacts: ["75% improvement in threat detection", "60% reduction in false alarms", "40% increase in operational efficiency"],
+              },
+              {
+                icon: AudioLines,
+                title: "Acoustic-AI Security Suite",
+                description: "Real-time audio analytics with speaker diarization and speech models to detect threats and automate emergency response while meeting data-sovereignty requirements.",
+                impacts: ["85% accuracy in threat detection", "50% faster emergency response", "70% reduction in manual monitoring"],
+              },
+            ].map((story, index) => {
+              const Icon = story.icon;
+              return (
+                <ScrollSection key={index} animation="fade-up" delay={index * 120}>
+                  <Card className="p-6 hover-lift shadow-soft h-full">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center">
+                        <Icon className="text-primary-foreground" size={24} />
+                      </div>
+                      <h3 className="text-xl font-semibold">{story.title}</h3>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{story.description}</p>
+                    <div className="space-y-2 pt-4 border-t border-border">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Impact:</p>
+                      {story.impacts.map((impact, i) => (
+                        <div key={i} className="flex items-center gap-2">
+                          <CheckCircle2 size={14} className="text-primary flex-shrink-0" />
+                          <span className="text-sm">{impact}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </Card>
+                </ScrollSection>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Platform Capabilities Grid - Dark */}
+      <section className="section-dark py-24 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto">
+          <ScrollSection animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+              <Badge className="badge-glow">Platform Capabilities</Badge>
+              <h2 className="text-4xl sm:text-5xl font-display font-bold">
+                Intelligent <span className="gradient-text">Features</span>
+              </h2>
+              <p className="text-lg text-[hsl(220_12%_65%)]">
+                AI-powered tools that streamline onboarding, discovery, compliance, and procurement.
+              </p>
+            </div>
+          </ScrollSection>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                icon: MessageSquareText,
+                title: "AI-Powered Onboarding",
+                description: "Intelligent chatbot guides vendors through qualification with conversational data gathering and automatic form filling.",
+                bullets: ["Conversational interface", "Smart validation", "Auto-form completion"],
+              },
+              {
+                icon: Tags,
+                title: "Smart Tagging System",
+                description: "AI-generated tags categorize solutions for easy discovery across industries and technical capabilities.",
+                bullets: ["Industry categorization", "Capability mapping", "Compatibility assessment"],
+              },
+              {
+                icon: Languages,
+                title: "Multilingual Support",
+                description: "Full Arabic, English, and Urdu language support with region-specific AI processing capabilities.",
+                bullets: ["Trilingual interface", "Arabic-first NLP", "Region-aware compliance"],
+              },
+              {
+                icon: ShieldCheck,
+                title: "Government Compliance",
+                description: "Solutions verified against national government requirements and international AI standards.",
+                bullets: ["Security verification", "Data sovereignty compliance", "Integration assessment"],
+              },
+              {
+                icon: BarChart3,
+                title: "Vendor Analytics",
+                description: "Detailed insights on solution performance, profile engagement, and market interest benchmarks.",
+                bullets: ["Profile impressions", "Interest tracking", "Competitive benchmarking"],
+              },
+              {
+                icon: Handshake,
+                title: "Streamlined Procurement",
+                description: "Simplified connection between AI solutions and government & enterprise decision makers.",
+                bullets: ["Direct communication", "Pre-qualified status", "Accelerated procurement"],
+              },
+            ].map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <ScrollSection key={index} animation="fade-up" delay={index * 100}>
+                  <Card className="card-themed p-6 hover-lift group h-full">
+                    <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center mb-4 group-hover:shadow-glow transition-all">
+                      <Icon className="text-primary-foreground" size={24} />
+                    </div>
+                    <h3 className="text-lg font-semibold text-[hsl(220_15%_95%)] mb-2">{feature.title}</h3>
+                    <p className="text-sm text-[hsl(220_12%_60%)] mb-4 leading-relaxed">{feature.description}</p>
+                    <ul className="space-y-1.5">
+                      {feature.bullets.map((b, i) => (
+                        <li key={i} className="flex items-center gap-2 text-sm text-[hsl(220_12%_65%)]">
+                          <CheckCircle2 size={12} className="text-primary flex-shrink-0" />
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  </Card>
+                </ScrollSection>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+
       <section className="section-dark py-24 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 gap-8">
