@@ -26,7 +26,17 @@ import {
   Radio,
   Landmark,
   Factory,
-  Star
+  Star,
+  MessageSquareText,
+  Tags,
+  Languages,
+  ShieldCheck,
+  BarChart3,
+  Handshake,
+  Brain,
+  FileText,
+  Video,
+  AudioLines
 } from "lucide-react";
 
 const Home = () => {
